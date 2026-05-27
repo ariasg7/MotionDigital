@@ -14,7 +14,7 @@ export function Navigation() {
         {/* Left - Brand Identity */}
         <div className="flex items-center gap-[0.1px] cursor-pointer group py-2 z-50">
           <img 
-            src="/img/Motion Digital Logo.png"
+            src="/img/Motion_Digital_Logo.png"
             alt="Motion Digital Logo" 
             className="w-16 h-16 md:w-24 md:h-24 object-contain transition-transform duration-300 ease-out group-hover:scale-105"
           />
