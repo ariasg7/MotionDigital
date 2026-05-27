@@ -3,7 +3,13 @@ import { Hero } from "../components/hero";
 import { TrustedSection } from "../components/trusted";
 import { WaveNodesSection } from "../components/service-wave";
 import { ProcessSection } from "../components/process";
-import { CaseStudies } from "../components/casestudies";
+import  CaseStudies from "../components/casestudies";
+
+import  Challenge  from "../components/challenge"
+import Pillars from "../components/pillars";
+import About from "../components/about";
+import FAQ from "../components/faq";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -16,11 +22,16 @@ export default function Home() {
         {/* Full-Screen Hero Viewport */}
         <Hero />
 
+        < Challenge />
         {/* High-Contrast Premium Metrics & Brand Social Proof */}
         <TrustedSection />
         <WaveNodesSection/>
+        <Pillars/>
+        <About/>
+        <FAQ/>
         <ProcessSection/>
         <CaseStudies />
+        <Footer />
       </main>
     </div>
   );

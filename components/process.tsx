@@ -24,27 +24,25 @@ export function ProcessSection() {
 
   return (
     <section className="relative w-full py-20 lg:py-32 bg-[#FAF9F5] overflow-hidden">
+      {/* Seamless Wave Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <svg className="w-full h-full min-h-[300px]" preserveAspectRatio="none" viewBox="0 0 2000 400">
-          <path d="M -500 200 Q 250 50 1000 200 T 2500 200" fill="none" stroke="#1D82A6" strokeWidth="6" className="wave-anim-fast" />
-          <path d="M -500 250 Q 250 400 1000 250 T 2500 250" fill="none" stroke="#0A111A" strokeWidth="4" className="wave-anim-slow opacity-20" />
+        <svg className="w-[3000px] h-full min-h-[300px]" preserveAspectRatio="none" viewBox="0 0 3000 400">
+          <path d="M 0 200 Q 750 50 1500 200 T 3000 200" fill="none" stroke="#1D82A6" strokeWidth="6" className="wave-anim-fast" />
+          <path d="M 0 250 Q 750 400 1500 250 T 3000 250" fill="none" stroke="#0A111A" strokeWidth="4" className="wave-anim-slow opacity-20" />
         </svg>
       </div>
 
       <style jsx global>{`
+        @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-1500px); } }
         .wave-anim-fast { animation: wave 20s linear infinite; }
         .wave-anim-slow { animation: wave 30s linear infinite; }
-        @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-1000px); } }
       `}</style>
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
         <div className="mb-16 lg:mb-24">
-          {/* Updated label to match the sans-serif editorial style */}
           <span className="text-[11px] font-bold tracking-[0.25em] text-[#1D82A6] uppercase block mb-3 font-sans">
             System Operations
           </span>
-          
-          {/* Main heading updated to font-sans with tighter, engineered tracking */}
           <h2 className="text-[40px] md:text-[64px] font-sans font-bold text-[#0A111A] tracking-tighter leading-[1.05]">
             Development Architecture.
           </h2>
@@ -63,12 +61,10 @@ export function ProcessSection() {
 function TiltCard({ stage, isMobile }: { stage: any; isMobile: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
   
-  // Motion values that persist
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const opacity = useMotionValue(1);
 
-  // Smooth springs
   const smoothX = useSpring(rotateX, { damping: 20, stiffness: 300 });
   const smoothY = useSpring(rotateY, { damping: 20, stiffness: 300 });
 
@@ -80,7 +76,6 @@ function TiltCard({ stage, isMobile }: { stage: any; isMobile: boolean }) {
   const scrollX = useTransform(scrollYProgress, [0, 1], [20, 0]);
   const scrollO = useTransform(scrollYProgress, [0, 1], [0.4, 1]);
 
-  // Update values based on mode
   useEffect(() => {
     if (isMobile) {
       const unsubX = scrollX.on("change", (v) => rotateX.set(v));
@@ -109,9 +104,8 @@ function TiltCard({ stage, isMobile }: { stage: any; isMobile: boolean }) {
       className="group relative bg-white p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] 
                  border-2 border-[#E5E5E5] hover:border-[#1D82A6] 
                  shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_-15px_rgba(29,130,166,0.3)]
-                 cursor-pointer"
+                 cursor-pointer transition-colors"
     >
-      {/* Card Content remains the same */}
       <div className="flex justify-between items-start mb-8 lg:mb-10">
         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#0A111A] flex items-center justify-center">
           <stage.icon className="text-white" size={18} strokeWidth={1.5} />
