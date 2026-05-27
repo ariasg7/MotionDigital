@@ -9,7 +9,7 @@ export function Hero() {
       {/* 1. Background Grid Art Layer */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 mix-blend-multiply">
         <img 
-          src="/img/Motion_Digital_Hero_img.png" 
+          src="/img/motion_digital_hero_img.png" 
           alt="Motion Digital Hero Backdrop" 
           className="w-full h-full object-cover object-bottom md:object-right-top scale-100 opacity-90 md:opacity-100"
         />
