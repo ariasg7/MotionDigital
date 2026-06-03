@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",  // ← change this
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["500", "700", "800"],
 });
@@ -21,6 +21,28 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Motion Digital",
   description: "Performance. Engineered.",
+  // Add this block for social media sharing
+  openGraph: {
+    title: "Motion Digital",
+    description: "High-performance digital systems that drive measurable growth.",
+    url: "https://yourdomain.com", // REPLACE with your actual live URL
+    siteName: "Motion Digital",
+    images: [
+      {
+        url: "/img/og-image.png", // Must be located in public/img/og-image.png
+        width: 1200,
+        height: 630,
+        alt: "Motion Digital - Performance. Engineered.",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Motion Digital",
+    description: "Performance. Engineered.",
+    images: ["/img/og-image.png"],
+  },
 };
 
 export default function RootLayout({
