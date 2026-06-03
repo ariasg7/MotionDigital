@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Motion Digital",
     images: [
       {
-        url: "/img/og-image.png", // Must be located in public/img/og-image.png
+        url: "https://raw.githubusercontent.com/ariasg7/MotionDigital/refs/heads/main/public/img/MotionDigitalOpenGraph.png", // Must be located in public/img/og-image.png
         width: 1200,
         height: 630,
         alt: "Motion Digital - Performance. Engineered.",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Motion Digital",
     description: "Performance. Engineered.",
-    images: ["/img/og-image.png"],
+    images: ["https://raw.githubusercontent.com/ariasg7/MotionDigital/refs/heads/main/public/img/MotionDigitalOpenGraph.png"],
   },
 };
 
