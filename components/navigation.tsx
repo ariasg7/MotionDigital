@@ -55,9 +55,9 @@ export function Navigation() {
             whileTap={{ scale: 0.98 }}
             className="flex items-center justify-center gap-3 bg-[#0F141C] text-white px-5 py-2.5 rounded-[8px] hover:bg-[#1D82A6] transition-all duration-300 ease-out group cursor-pointer"
           >
-            <span className="text-[11px] font-bold tracking-[0.06em] antialiased uppercase whitespace-nowrap">
-              BOOK A CALL
-            </span>
+          <span className="text-[11px] font-bold tracking-[0.06em] uppercase">
+            BOOK A CALL
+          </span>
             <ArrowUpRight 
               className="w-3.5 h-3.5 text-[#1D82A6] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
               strokeWidth={2.5} 
@@ -66,14 +66,19 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu Trigger */}
-        <div className="flex md:hidden items-center z-50">
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2.5 rounded-[12px] border border-[#1A1A1A]/10 bg-white/50 backdrop-blur-sm active:scale-95 transition-all outline-none cursor-pointer"
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
+<div className="flex md:hidden items-center z-[100]">
+  <button 
+    onClick={() => setIsOpen(!isOpen)}
+    className="p-3 rounded-xl border border-[#1A1A1A]/10 bg-[#FAF9F5] backdrop-blur-sm active:scale-95 transition-all outline-none"
+    aria-label="Toggle Menu"
+  >
+    {isOpen ? (
+      <X className="w-6 h-6 text-[#1A1A1A]" strokeWidth={2} />
+    ) : (
+      <Menu className="w-6 h-6 text-[#1A1A1A]" strokeWidth={2} />
+    )}
+  </button>
+</div>
       </div>
 
       {/* Mobile Drawer */}
