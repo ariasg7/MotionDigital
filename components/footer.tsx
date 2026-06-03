@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 
@@ -13,7 +16,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full bg-[#0A111A] text-white pt-16 pb-8 border-t border-[#1E293B] overflow-hidden font-sans">
+    <motion.footer 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="relative w-full bg-[#0A111A] text-white pt-16 pb-8 border-t border-[#1E293B] overflow-hidden font-sans"
+    >
       
       {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
@@ -27,13 +36,19 @@ export default function Footer() {
       <div className="relative z-10 max-w-[1700px] mx-auto px-6 lg:px-20">
         
         {/* TOP SECTION */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 mb-12"
+        >
           
           {/* Logo & Branding Column */}
           <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
             <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
               <img 
-                src="/img/motion_digital_logo.png" 
+                src="/img/motion_digital.png" 
                 alt="Motion Digital Logo" 
                 className="max-h-full w-auto object-contain"
               />
@@ -70,7 +85,7 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="border-t border-[#1E293B] mb-8"></div>
@@ -85,7 +100,6 @@ export default function Footer() {
                 className="w-10 h-10 rounded-full border border-[#1E293B] flex items-center justify-center hover:border-[#1D82A6] hover:bg-[#1D82A6]/10 transition-all duration-300"
                 aria-label={social.name}
               >
-                {/* Apply rotate-180 only to the phone icon */}
                 <social.icon className={`w-5 h-5 ${social.name === "Phone" ? "rotate-90" : ""}`} />
               </a>
             ))}
@@ -95,6 +109,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

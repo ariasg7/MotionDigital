@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,15 +28,25 @@ const faqData = [
 ];
 
 export default function FAQ() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(1);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full py-16 md:py-32 bg-white font-sans">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="w-full py-16 md:py-32 bg-white font-sans"
+    >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
         {/* Left Side: Header */}
-        {/* Added flex items-center and lg:items-start to control button alignment */}
-        <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8 items-center lg:items-start text-center lg:text-left">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-5 flex flex-col gap-6 md:gap-8 items-center lg:items-start text-center lg:text-left"
+        >
           <div className="flex items-center gap-4">
             <span className="text-[12px] md:text-[14px] font-bold tracking-[0.2em] text-[#1D82A6] uppercase">FAQ</span>
             <div className="w-12 md:w-16 h-[2px] bg-[#1D82A6]" />
@@ -49,7 +59,6 @@ export default function FAQ() {
             Here are some of the most common questions we receive from new clients regarding our process, technology, and partnerships.
           </p>
           
-          {/* Centered on mobile via mx-auto, left-aligned on desktop */}
           <button className="font-sans bg-[#0A111A] text-white px-8 md:px-10 py-5 md:py-7 rounded-2xl w-fit flex items-center gap-4 hover:bg-[#1D82A6] transition-colors mx-auto lg:mx-0">
             <div className="flex flex-col items-start">
               <span className="text-[10px] md:text-[11px] uppercase tracking-[0.1em] opacity-80">Still have questions?</span>
@@ -57,13 +66,17 @@ export default function FAQ() {
             </div>
             <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
           </button>
-        </div>
+        </motion.div>
 
         {/* Right Side: Accordion */}
         <div className="lg:col-span-7 flex flex-col gap-4 md:gap-6">
           {faqData.map((item, i) => (
-            <div 
+            <motion.div 
               key={i} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
               className="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:border-[#1D82A6]/30 transition-colors"
             >
               <button
@@ -86,16 +99,17 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                     className="font-sans px-6 md:px-8 pb-6 md:pb-8 text-[14px] md:text-[16px] text-[#64748B] leading-relaxed"
                   >
                     {item.answer}
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from "framer-motion";
 import { Code2, ShieldCheck, Cloud, Rocket, BarChart3 } from 'lucide-react';
 
 const pillars = [
@@ -9,8 +12,27 @@ const pillars = [
 ];
 
 export default function Pillars() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.2 } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden font-sans">
+    <motion.section 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+      className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden font-sans"
+    >
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 opacity-[0.3]">
         <img 
@@ -24,7 +46,7 @@ export default function Pillars() {
       <div className="relative z-10 max-w-[1700px] mx-auto px-6 lg:px-20 flex flex-col lg:flex-row gap-16 lg:gap-24">
         
         {/* LEFT: Text Content */}
-        <div className="lg:w-[480px] flex-shrink-0">
+        <motion.div variants={itemVariants} className="lg:w-[480px] flex-shrink-0">
           <div className="flex items-center gap-6 mb-3">
             <span className="text-[12px] font-bold tracking-[0.2em] text-[#A1B0C4] uppercase">
               Our Technical Pillars
@@ -40,14 +62,15 @@ export default function Pillars() {
           <p className="text-[16px] text-[#A1B0C4] leading-[1.65] max-w-[340px] font-normal">
             Our engineering standards ensure every solution we build is secure, scalable, and future-ready. No shortcuts. No compromises.
           </p>
-        </div>
+        </motion.div>
 
         {/* RIGHT: Pillars Grid & Callout */}
         <div className="flex-1 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-4">
+          <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-4">
             {pillars.map((pillar, i) => (
-              <div 
+              <motion.div 
                 key={i} 
+                variants={itemVariants}
                 className="relative pt-32 pb-8 px-6 flex flex-col items-center text-center"
               >
                 {i !== pillars.length - 1 && (
@@ -60,11 +83,11 @@ export default function Pillars() {
                 
                 <h3 className="text-[18px] font-semibold mb-2 tracking-tight">{pillar.title}</h3>
                 <p className="text-[14px] text-[#94A3B8] leading-relaxed font-normal">{pillar.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           
-          <div className="mt-12 w-full border border-[#1D82A6] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-6">
+          <motion.div variants={itemVariants} className="mt-12 w-full border border-[#1D82A6] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-6">
             <div className="w-20 h-20 rounded-full border border-[#1E293B] flex items-center justify-center flex-shrink-0">
               <BarChart3 className="w-8 h-8 text-white" />
             </div>
@@ -73,9 +96,9 @@ export default function Pillars() {
               <h4 className="font-bold text-[18px] mb-1">Our standards. Your advantage.</h4>
               <p className="text-[#94A3B8] text-[14px] font-normal">Better code. Better products. Better outcomes.</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

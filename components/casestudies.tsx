@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import React from 'react';
-import { ArrowUpRight, CheckCircle2, ShieldCheck, Users, Lock } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowUpRight, ShieldCheck, Users, Lock } from 'lucide-react';
 
 const stories = [
   {
@@ -30,10 +31,6 @@ const stories = [
 export default function CaseStudies() {
   return (
     <section className="relative py-24 px-6 lg:px-20 bg-[#FAF9F5] overflow-hidden">
-      {/* Updated Background Image: 
-        Added 'top-[-10%]' and 'h-[120%]' to force the image to extend 
-        higher up and cover more area behind the cards. 
-      */}
       <img 
         src="/img/motion_digital_hero_img.png" 
         alt="Abstract wave background" 
@@ -41,15 +38,28 @@ export default function CaseStudies() {
       />
       
       <div className="max-w-[1440px] mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-16"
+        >
           <span className="text-[11px] font-bold tracking-[0.25em] text-[#1D82A6] uppercase mb-4 block">Client Success Stories</span>
           <h2 className="text-[40px] md:text-[64px] font-bold text-[#0A111A] tracking-tighter leading-tight mb-6">Real results.<br />Measurable impact.</h2>
           <p className="text-[#64748B] text-lg max-w-xl mx-auto">We partner with innovative companies to build digital products that drive growth, efficiency, and long-term value.</p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {stories.map((story) => (
-            <div key={story.id} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm min-h-[560px] flex flex-col justify-between group overflow-hidden">
+          {stories.map((story, index) => (
+            <motion.div 
+              key={story.id} 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm min-h-[560px] flex flex-col justify-between group overflow-hidden"
+            >
               <div>
                 <div className="h-48 w-full rounded-2xl mb-8 overflow-hidden bg-gray-100">
                   <img src={`/assets/client-${story.id}.jpg`} alt={story.company} className="w-full h-full object-cover" />
@@ -66,74 +76,53 @@ export default function CaseStudies() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Footer CTA Banner */}
-    <div className="relative bg-[#0A111A] rounded-3xl p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-white overflow-hidden">
-      
-      {/* CTA Box Background Texture */}
-      <img 
-        src="/img/pillars_img.png" 
-        alt="CTA Texture" 
-        className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" 
-      />
-
-      {/* Left Side: Brand Block with Glow Effect */}
-      <div className="flex flex-col items-center lg:pr-12 lg:border-r border-[#1E293B] relative z-10 shrink-0">
-        <div className="w-24 h-24 flex items-center justify-center mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="relative bg-[#0A111A] rounded-3xl p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-white overflow-hidden"
+        >
           <img 
-            src="/img/motion_digital_logo.png" 
-            alt="Motion Digital Logo" 
-            className="max-h-full w-auto object-contain"
+            src="/img/casestudies_metric.png" 
+            alt="CTA Texture" 
+            className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" 
           />
-        </div>
-        <div className="flex flex-col items-center text-center">
-          <span className="font-sans font-semibold text-xl uppercase tracking-[0.2em] leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-            MOTION
-          </span>
-          <span className="font-sans text-sm uppercase tracking-[0.2em] mt-2 leading-none opacity-80">
-            Digital
-          </span>
-        </div>
-      </div>
 
-      {/* Middle: Heading & Trust Badges */}
-      <div className="flex flex-col gap-4 relative z-10 flex-grow px-0 lg:px-8">
-        {/* Hierarchical Text Structure */}
-        <div>
-          <h2 className="text-3xl font-bold leading-tight">Your success is our standard.</h2>
-          <h3 className="text-lg font-medium text-white/70 mt-1">Let's build something exceptional together.</h3>
-        </div>
-        
-        {/* Badges Group with Vertical Dividers */}
-        <div className="flex items-center gap-4 text-[10px] font-medium tracking-[0.1em] uppercase opacity-60">
-          <div className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5"/> <span>Enterprise Grade</span>
+          <div className="flex flex-col items-center lg:pr-12 lg:border-r border-[#1E293B] relative z-10 shrink-0">
+            <div className="w-24 h-24 flex items-center justify-center mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+              <img src="/img/motion_digital.png" alt="Motion Digital Logo" className="max-h-full w-auto object-contain" />
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <span className="font-sans font-semibold text-xl uppercase tracking-[0.2em] leading-none">MOTION</span>
+              <span className="font-sans text-sm uppercase tracking-[0.2em] mt-2 leading-none opacity-80">Digital</span>
+            </div>
           </div>
-          
-          <div className="w-px h-3 bg-white/20" />
-          
-          <div className="flex items-center gap-1.5">
-            <Lock className="w-3.5 h-3.5"/> <span>Secure & Compliant</span>
-          </div>
-          
-          <div className="w-px h-3 bg-white/20" />
-          
-          <div className="flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5"/> <span>Long-term Partner</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Right: Button */}
-      <div className="relative z-10 shrink-0 w-full lg:w-auto">
-        <button className="bg-transparent border border-white/20 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-white hover:text-[#0A111A] transition-all w-full lg:w-auto justify-center whitespace-nowrap">
-          VIEW ALL CASE STUDIES <ArrowUpRight className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
+          <div className="flex flex-col gap-4 relative z-10 flex-grow px-0 lg:px-8">
+            <div>
+              <h2 className="text-3xl font-bold leading-tight">Your success is our standard.</h2>
+              <h3 className="text-lg font-medium text-white/70 mt-1">Let's build something exceptional together.</h3>
+            </div>
+            <div className="flex items-center gap-4 text-[10px] font-medium tracking-[0.1em] uppercase opacity-60">
+              <div className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5"/> <span>Enterprise Grade</span></div>
+              <div className="w-px h-3 bg-white/20" />
+              <div className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5"/> <span>Secure & Compliant</span></div>
+              <div className="w-px h-3 bg-white/20" />
+              <div className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5"/> <span>Long-term Partner</span></div>
+            </div>
+          </div>
+
+          <div className="relative z-10 shrink-0 w-full lg:w-auto">
+            <button className="bg-transparent border border-white/20 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-white hover:text-[#0A111A] transition-all w-full lg:w-auto justify-center">
+              VIEW ALL CASE STUDIES <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

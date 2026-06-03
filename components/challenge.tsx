@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from "framer-motion";
 import { Clock, DollarSign, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
 const challenges = [
@@ -25,13 +28,32 @@ const challenges = [
 ];
 
 export default function Challenge() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.2 } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section className="w-full relative py-24 bg-[#FAF9F5] font-sans">
+    <motion.section 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+      className="w-full relative py-24 bg-[#FAF9F5] font-sans"
+    >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Text Content */}
-          <div className="space-y-6">
+          <motion.div variants={itemVariants} className="space-y-6">
             <span className="text-[11px] font-bold tracking-[0.25em] text-[#1D82A6] uppercase">
               Why Modernize?
             </span>
@@ -41,28 +63,28 @@ export default function Challenge() {
             <p className="text-[16px] text-[#64748B] max-w-[450px] leading-relaxed font-normal">
               Legacy platforms, technical debt, and disconnected tools slow down your business and limit your potential. We help modern companies move faster, operate smarter, and build for the future.
             </p>
-          </div>
+          </motion.div>
 
           {/* Grid Content */}
-          <div className="grid sm:grid-cols-2 gap-4">
+          <motion.div variants={containerVariants} className="grid sm:grid-cols-2 gap-4">
             {challenges.map((item, index) => (
-              <div 
+              <motion.div 
                 key={index} 
+                variants={itemVariants}
                 className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:border-[#1D82A6]/20 transition-all duration-300"
               >
                 <div className="mb-4">{item.icon}</div>
-                {/* Titles use font-semibold for a refined look over bold */}
                 <h3 className="font-semibold text-[#0F141C] mb-2 text-[18px]">
                   {item.title}
                 </h3>
                 <p className="text-[14px] text-[#64748B] leading-relaxed font-normal">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

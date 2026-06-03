@@ -11,7 +11,7 @@
 
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --font-display: var(--font-plus-jakarta), sans-serif;  /* ← change this */
+  --font-display: var(--font-plus-jakarta), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,13 +21,24 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-}
+@layer base {
+  html {
+    /* Enables smooth scrolling across the entire site */
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-y: auto;
+  }
 
-/* Ensure interactive elements pick up utility changes without browser hijacking */
-button, input, select, textarea, a {
-  font-family: inherit;
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    /* Sets the default font to font-sans globally */
+    @apply font-sans;
+    height: 100%;
+  }
+
+  /* Ensure interactive elements pick up utility changes */
+  button, input, select, textarea, a {
+    font-family: inherit;
+  }
 }
