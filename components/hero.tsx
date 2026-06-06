@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero({ id }: { id?: string }) {
-  const services = ["STRATEGY", "DESIGN", "ENGINEERING", "OPTIMIZATION", "AI INTEGRATION"];
+  const services = ["WEBSITES", "BRANDING", "SEO", "GOOGLE BUSINESS", "AI SOLUTIONS"];
 
   return (
     <motion.section 
@@ -36,7 +36,7 @@ export function Hero({ id }: { id?: string }) {
               className="inline-flex items-center px-4 py-1.5 bg-transparent border border-[#1D82A6]/20 rounded-full mb-8 md:mb-9 self-start"
             >
               <span className="text-[12px] font-bold tracking-[0.12em] text-[#1D82A6]/80 antialiased font-sans">
-                PERFORMANCE. ENGINEERED.
+                DIGITAL GROWTH FOR LOCAL BUSINESSES
               </span>
             </motion.div>
 
@@ -46,8 +46,9 @@ export function Hero({ id }: { id?: string }) {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="mb-6 md:mb-8 text-[48px] sm:text-[56px] lg:text-[72px] xl:text-[80px] font-semibold tracking-[-0.03em] leading-[1.1] md:leading-[1.05] font-sans"
             >
-              <span className="text-[#1A1A1A] block">Digital Performance,</span>
-              <span className="text-[#1D82A6] block mt-0.5 md:mt-1">Engineered.</span>
+              <span className="text-[#1A1A1A] block">Get Found.</span>
+              <span className="text-[#1D82A6] block mt-0.5 md:mt-1">Get Chosen.</span>
+              <span className="text-[#1A1A1A] block">Grow.</span>
             </motion.div>
 
             <motion.p 
@@ -56,18 +57,24 @@ export function Hero({ id }: { id?: string }) {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-[15px] lg:text-[16px] leading-[1.75] font-light text-[#1A1A1A]/70 max-w-[480px] tracking-[0.01em] font-sans"
             >
-              We build high-performance digital systems that drive measurable growth and long-term impact.
+              Websites, branding, SEO, and AI tools — so more customers find you, trust you, and call you.
             </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-10 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-9 items-start w-full sm:w-auto"
+              className="mt-10 md:mt-8 flex flex-row gap-4 items-center"
             >
+              {/* PRIMARY BUTTON */}
               <button className="flex items-center gap-3 bg-[#0F141C] text-white pl-4 pr-3 py-3 rounded-[8px] hover:bg-[#1D82A6] transition-all group font-sans">
-                <span className="text-[11px] font-sans uppercase tracking-[0.04em]">EXPLORE OUR WORK</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] group-hover:translate-x-0.5" />
+                <span className="text-[11px] font-sans uppercase tracking-[0.04em]">BOOK A FREE CALL</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] group-hover:translate-x-0.5 group-hover:text-white" />
+              </button>
+
+              {/* SECONDARY BUTTON */}
+              <button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
+                SEE OUR WORK
               </button>
             </motion.div>
           </div>

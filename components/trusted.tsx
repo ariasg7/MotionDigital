@@ -1,25 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { Activity, Clock, TrendingUp, Users } from "lucide-react";
+import { useEffect, useRef } from "react";
+
+function Counter({ target, prefix, suffix, spring }: { target: number; prefix?: string; suffix?: string; spring: any }) {
+  const display = useTransform(spring, (latest: number) => 
+    `${prefix ?? ""}${Math.floor(latest * target)}${suffix ?? ""}`
+  );
+
+  return (
+    <motion.div className="text-[34px] lg:text-[38px] font-sans text-white/90 tracking-tight leading-none antialiased">
+      {display}
+    </motion.div>
+  );
+}
 
 export function TrustedSection() {
   const partnerLogos = ["Linear", "Brex", "Webflow", "Vercel", "Zapier", "Ramp"];
   
   const metrics = [
-    { icon: Activity, stat: "98%", label: "PERFORMANCE SCORE", description: "Average across projects" },
-    { icon: Clock, stat: "2.4s", label: "AVERAGE LOAD TIME", description: "Faster experiences" },
-    { icon: TrendingUp, stat: "250+", label: "PROJECTS DELIVERED", description: "Across industries" },
-    { icon: Users, stat: "100%", label: "CLIENT FOCUS", description: "Long-term partnerships" }
+    { icon: Activity,   value: 5,   prefix: "",  suffix: "★",  label: "AVERAGE RATING",  description: "Across all client profiles" },
+    { icon: Clock,      value: 48,  prefix: "",  suffix: "hr", label: "TURNAROUND",       description: "From brief to first draft"  },
+    { icon: TrendingUp, value: 100, prefix: "",  suffix: "%",  label: "DONE FOR YOU",     description: "No tech headaches"          },
+    { icon: Users,      value: 15,  prefix: "",  suffix: "+",  label: "CLIENTS SERVED",   description: "Across local industries"    },
   ];
 
-  // Animation variants
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+  const spring = useSpring(0, { duration: 2000, bounce: 0 });
+
+  useEffect(() => {
+    if (isInView) spring.set(1);
+  }, [isInView, spring]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.2 } 
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
   const itemVariants = {
@@ -29,6 +46,7 @@ export function TrustedSection() {
 
   return (
     <motion.section 
+      ref={containerRef}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -36,19 +54,15 @@ export function TrustedSection() {
       className="w-full bg-[#0A111A] pt-16 lg:pt-24 pb-12 lg:pb-16 select-none font-sans"
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
-        
-        {/* Trusted By Header */}
+
+        {/* Header + Logos */}
         <motion.div variants={itemVariants} className="text-center">
           <p className="text-[10px] lg:text-[11px] font-bold tracking-[0.45em] text-[#1D82A6] mb-6 lg:mb-8 antialiased uppercase opacity-90">
-            Trusted by ambitious brands
+            BUILT FOR LOCAL BUSINESSES
           </p>
-
           <div className="w-full border-b border-white/[0.05] flex flex-wrap lg:flex-nowrap items-center justify-center gap-y-6 pt-2 pb-8 lg:pb-10">
             {partnerLogos.map((logo, index) => (
-              <div 
-                key={logo} 
-                className="w-1/2 sm:w-1/3 lg:flex-1 flex items-center justify-center relative"
-              >
+              <div key={logo} className="w-1/2 sm:w-1/3 lg:flex-1 flex items-center justify-center relative">
                 <span className="text-[18px] lg:text-[23px] font-bold text-white/90 tracking-tight antialiased">
                   {logo}
                 </span>
@@ -60,7 +74,7 @@ export function TrustedSection() {
           </div>
         </motion.div>
 
-        {/* Performance Metrics Grid */}
+        {/* Metrics */}
         <motion.div 
           variants={containerVariants}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full items-center mt-8 lg:mt-12 gap-y-8 sm:gap-y-12 lg:gap-y-0"
@@ -69,28 +83,21 @@ export function TrustedSection() {
             const Icon = metric.icon;
             return (
               <motion.div 
-                variants={itemVariants}
+                variants={itemVariants} 
                 key={index} 
                 className={`flex items-start justify-center gap-5 py-4 px-4 lg:px-6 relative w-full
-                  ${index < metrics.length - 1 ? 'border-b border-white/[0.03] sm:border-b-0 pb-8 sm:pb-4' : ''}
+                  ${index < metrics.length - 1 ? "lg:border-r border-white/[0.04]" : ""}
                 `}
               >
-                {index < metrics.length - 1 && (
-                  <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-14 w-[1px] bg-white/[0.04]" />
-                )}
-                
                 <div className="w-11 h-11 rounded-full border border-white/[0.75] flex items-center justify-center flex-shrink-0 mt-1 bg-white/[0.01]">
                   <Icon className="w-4 h-4 text-white/[0.75]" strokeWidth={1.25} />
                 </div>
-
-                <div className="flex flex-col min-w-[155px]">
-                  <div className="text-[34px] lg:text-[38px] font-extralight text-white/90 tracking-tight leading-none antialiased">
-                    {metric.stat}
-                  </div>
-                  <div className="text-[9px] font-bold tracking-[0.16em] text-white/[0.65] uppercase mt-2.5 antialiased">
+                <div className="flex flex-col min-w-[140px]">
+                  <Counter target={metric.value} prefix={metric.prefix} suffix={metric.suffix} spring={spring} />
+                  <div className="text-[9px] font-light tracking-[0.16em] text-white/[0.65] uppercase mt-2.5 antialiased">
                     {metric.label}
                   </div>
-                  <div className="text-[12px] text-white/[0.65] tracking-normal normal-case mt-0.5 antialiased font-light">
+                  <div className="text-[12px] text-white/[0.65] tracking-normal normal-case mt-0.5 antialiased font-extralight">
                     {metric.description}
                   </div>
                 </div>
@@ -99,7 +106,7 @@ export function TrustedSection() {
           })}
         </motion.div>
 
-        {/* Scroll to Discover */}
+        {/* Scroll indicator */}
         <motion.div variants={itemVariants} className="flex flex-col items-center mt-16 lg:mt-24 gap-4">
           <span className="text-[10px] font-bold tracking-[0.3em] text-[#1D82A6] uppercase antialiased opacity-80">
             Scroll to discover

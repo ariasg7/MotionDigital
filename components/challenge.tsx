@@ -2,87 +2,101 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { Clock, DollarSign, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
 const challenges = [
   {
-    title: "Slow & Inefficient",
-    description: "Manual processes and legacy systems create bottlenecks and slow down delivery.",
-    icon: <Clock className="w-6 h-6 text-[#1D82A6]" />
+    number: "01",
+    title: "Invisible on Google",
+    description: "If you're not in the top 3 on Google Maps, customers call your competitor instead.",
   },
   {
-    title: "High Costs",
-    description: "Maintenance, workarounds, and technical debt drive up costs and reduce profitability.",
-    icon: <DollarSign className="w-6 h-6 text-[#1D82A6]" />
+    number: "02",
+    title: "No Online Credibility",
+    description: "A weak website or missing profile makes people second-guess your business before they call.",
   },
   {
-    title: "Hard to Scale",
-    description: "Outdated architecture makes it difficult to scale, adapt, and meet growing demands.",
-    icon: <ArrowUpRight className="w-6 h-6 text-[#1D82A6]" />
+    number: "03",
+    title: "Missing Out on Leads",
+    description: "Without SEO or a proper Google profile, you're only reaching customers who already know you.",
   },
   {
-    title: "Business Risk",
-    description: "Security vulnerabilities and system instability put your data, team, and reputation at risk.",
-    icon: <ShieldCheck className="w-6 h-6 text-[#1D82A6]" />
+    number: "04",
+    title: "Falling Behind",
+    description: "Other local businesses are investing in their online presence — every month you wait, the gap grows.",
   }
 ];
 
 export default function Challenge() {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.2 } 
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 24 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
-    <motion.section 
+    <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="w-full relative py-24 bg-[#FAF9F5] font-sans"
+      className="w-full relative py-24 md:py-32 bg-[#FAF9F5] font-sans overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Text Content */}
-          <motion.div variants={itemVariants} className="space-y-6">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          {/* LEFT: Sticky Text */}
+          <motion.div variants={itemVariants} className="lg:sticky lg:top-32 space-y-8">
             <span className="text-[11px] font-bold tracking-[0.25em] text-[#1D82A6] uppercase">
-              Why Modernize?
+              The Real Problem
             </span>
-            <h2 className="text-[40px] md:text-[56px] font-bold text-[#0F141C] tracking-tighter leading-[1.1]">
-              Outdated systems <br/>hold you back.
+            <h2 className="text-[52px] md:text-[72px] font-bold text-[#0F141C] tracking-tighter leading-[1.05]">
+              Your competitors<br />
+              are already<br />
+              <span className="text-[#1D82A6]">online.</span>
             </h2>
-            <p className="text-[16px] text-[#64748B] max-w-[450px] leading-relaxed font-normal">
-              Legacy platforms, technical debt, and disconnected tools slow down your business and limit your potential. We help modern companies move faster, operate smarter, and build for the future.
+            <p className="text-[16px] text-[#64748B] max-w-[460px] leading-relaxed font-normal">
+              Most local businesses lose customers before a single conversation happens — because they can't be found online, don't look trustworthy, or never follow up fast enough.
             </p>
+            <div className="pt-2">
+              <span className="text-[16px] font-semibold text-[#0F141C] tracking-tight">
+                We fix all three.
+              </span>
+            </div>
           </motion.div>
 
-          {/* Grid Content */}
-          <motion.div variants={containerVariants} className="grid sm:grid-cols-2 gap-4">
+          {/* RIGHT: Numbered List */}
+          <motion.div variants={containerVariants} className="flex flex-col divide-y divide-[#E2E0D9]">
             {challenges.map((item, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={itemVariants}
-                className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:border-[#1D82A6]/20 transition-all duration-300"
+                className="group flex gap-6 py-8 items-start hover:bg-[#F5F3EE] transition-colors duration-300 px-4 -mx-4 rounded-xl cursor-default"
               >
-                <div className="mb-4">{item.icon}</div>
-                <h3 className="font-semibold text-[#0F141C] mb-2 text-[18px]">
-                  {item.title}
-                </h3>
-                <p className="text-[14px] text-[#64748B] leading-relaxed font-normal">
-                  {item.description}
-                </p>
+                {/* Number */}
+                <span className="text-[13px] font-bold tracking-[0.1em] text-[#1D82A6]/40 group-hover:text-[#1D82A6] transition-colors duration-300 pt-1 w-8 flex-shrink-0">
+                  {item.number}
+                </span>
+
+                {/* Divider */}
+                <div className="w-[1px] self-stretch bg-[#E2E0D9] group-hover:bg-[#1D82A6] transition-colors duration-300 flex-shrink-0" />
+
+                {/* Content */}
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-[20px] font-semibold text-[#0F141C] tracking-tight leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-[14px] text-[#64748B] leading-relaxed font-normal">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
+
         </div>
       </div>
     </motion.section>
