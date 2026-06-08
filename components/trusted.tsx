@@ -17,7 +17,14 @@ function Counter({ target, prefix, suffix, spring }: { target: number; prefix?: 
 }
 
 export function TrustedSection() {
-  const partnerLogos = ["Linear", "Brex", "Webflow", "Vercel", "Zapier", "Ramp"];
+  const partnerLogos = [
+    { name: "Figma",  src: "img/brands/figma.png",  square: true  },
+    { name: "Vercel", src: "img/brands/vercel.png", square: false },
+    { name: "GitHub", src: "img/brands/github.png", square: false },
+    { name: "OpenAI", src: "img/brands/openai.png", square: false },
+    { name: "Canva",  src: "img/brands/canva.png",  square: false },
+    { name: "Sanity", src: "img/brands/sanity.png", square: false },
+  ];
   
   const metrics = [
     { icon: Activity,   value: 5,   prefix: "",  suffix: "★",  label: "AVERAGE RATING",  description: "Across all client profiles" },
@@ -58,20 +65,26 @@ export function TrustedSection() {
         {/* Header + Logos */}
         <motion.div variants={itemVariants} className="text-center">
           <p className="text-[10px] lg:text-[11px] font-bold tracking-[0.45em] text-[#1D82A6] mb-6 lg:mb-8 antialiased uppercase opacity-90">
-            BUILT FOR LOCAL BUSINESSES
+            POWERED BY INDUSTRY-LEADING TOOLS
           </p>
-          <div className="w-full border-b border-white/[0.05] flex flex-wrap lg:flex-nowrap items-center justify-center gap-y-6 pt-2 pb-8 lg:pb-10">
+          <div className="w-full border-b border-white/[0.05] flex flex-wrap lg:flex-nowrap items-center justify-center gap-y-8 pt-2 pb-8 lg:pb-10">
             {partnerLogos.map((logo, index) => (
-              <div key={logo} className="w-1/2 sm:w-1/3 lg:flex-1 flex items-center justify-center relative">
-                <span className="text-[18px] lg:text-[23px] font-bold text-white/90 tracking-tight antialiased">
-                  {logo}
-                </span>
+              <div key={logo.name} className="w-1/2 sm:w-1/3 lg:flex-1 flex items-center justify-center relative">
+                <div className="opacity-90 hover:opacity-100 transition-opacity duration-300">
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    className={`object-contain flex-shrink-0 ${
+                      logo.square ? "h-12 w-12" : "h-9 w-auto max-w-[160px]"
+                    }`}
+                  />
+                </div>
                 {index < partnerLogos.length - 1 && (
-                  <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-5 w-[1px] bg-white/[0.06]" />
+                  <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-6 w-[1px] bg-white/[0.06]" />
                 )}
               </div>
             ))}
-          </div>
+</div>
         </motion.div>
 
         {/* Metrics */}

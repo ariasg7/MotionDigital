@@ -2,13 +2,29 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { Code2, ShieldCheck, Cloud, Rocket, BarChart3 } from 'lucide-react';
+import { MapPin, Star, CheckCircle, TrendingUp, Layers, ArrowUpRight } from 'lucide-react';
 
 const pillars = [
-  { title: "Clean Code", desc: "Readable, maintainable, and tested code.", icon: <Code2 className="w-8 h-8 text-white" /> },
-  { title: "Secure by Design", desc: "Security best practices built in.", icon: <ShieldCheck className="w-8 h-8 text-white" /> },
-  { title: "Scalable Architecture", desc: "Modern, modular systems.", icon: <Cloud className="w-8 h-8 text-white" /> },
-  { title: "Performance First", desc: "High-performance applications.", icon: <Rocket className="w-8 h-8 text-white" /> },
+  { 
+    title: "Found on Google", 
+    desc: "We get you ranking where customers are already searching — Google Maps, local search, and beyond.", 
+    icon: <MapPin className="w-8 h-8 text-white" /> 
+  },
+  { 
+    title: "Looks Professional", 
+    desc: "Your website and brand build instant trust with new customers before they even call you.", 
+    icon: <Star className="w-8 h-8 text-white" /> 
+  },
+  { 
+    title: "Done For You", 
+    desc: "We handle everything — you focus on running your business, we handle your digital presence.", 
+    icon: <CheckCircle className="w-8 h-8 text-white" /> 
+  },
+  { 
+    title: "Built to Grow", 
+    desc: "Every service compounds over time — more visibility, more leads, more calls month after month.", 
+    icon: <TrendingUp className="w-8 h-8 text-white" /> 
+  },
 ];
 
 export default function Pillars() {
@@ -31,10 +47,10 @@ export default function Pillars() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden font-sans"
+      className="relative w-full py-24 bg-[#0A111A] text-white font-sans"
     >
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0 opacity-[0.3]">
+      <div className="absolute inset-0 z-0 opacity-[0.3] overflow-hidden">
         <img 
           src="/img/pillars_img.png" 
           alt="" 
@@ -49,19 +65,32 @@ export default function Pillars() {
         <motion.div variants={itemVariants} className="lg:w-[480px] flex-shrink-0">
           <div className="flex items-center gap-6 mb-3">
             <span className="text-[12px] font-bold tracking-[0.2em] text-[#A1B0C4] uppercase">
-              Our Technical Pillars
+              Why Motion Digital
             </span>
             <div className="w-[60px] h-[1px] bg-[#1E293B]" />
           </div>
           
           <div className="flex flex-col text-[36px] md:text-[42px] font-bold tracking-tight leading-[1.15] mb-8">
-            <span>Engineering excellence.</span>
-            <span className="text-[#1D82A6]">Built in from the start.</span>
+            <span>Everything you need.</span>
+            <span className="text-[#1D82A6]">Nothing you don't.</span>
           </div>
           
           <p className="text-[16px] text-[#A1B0C4] leading-[1.65] max-w-[340px] font-normal">
-            Our engineering standards ensure every solution we build is secure, scalable, and future-ready. No shortcuts. No compromises.
+            We don't overwhelm you with tech jargon or unnecessary services. Every solution we build is focused on one thing — getting your local business more customers.
           </p>
+
+          <div className="flex items-center gap-3 mt-8">
+            <div className="w-8 h-[1px] bg-[#1D82A6]" />
+            <span className="text-[13px] text-[#1D82A6] font-medium tracking-wide">
+              You own everything. We keep it running.
+            </span>
+          </div>
+
+          {/* Desktop only CTA */}
+          <button className="hidden lg:flex mt-6 items-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group">
+            <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span>
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-all duration-300" />
+          </button>
         </motion.div>
 
         {/* RIGHT: Pillars Grid & Callout */}
@@ -71,32 +100,47 @@ export default function Pillars() {
               <motion.div 
                 key={i} 
                 variants={itemVariants}
-                className="relative pt-32 pb-8 px-6 flex flex-col items-center text-center"
+                className="relative pt-32 pb-8 px-6 flex flex-col items-center text-center group"
               >
                 {i !== pillars.length - 1 && (
                   <div className="hidden md:block absolute right-0 top-[10%] h-[80%] w-[2px] bg-[#1E293B]" />
                 )}
 
-                <div className="-mt-36 mb-12 w-20 h-20 rounded-full border border-white flex items-center justify-center">
+                <div className="-mt-36 mb-12 w-20 h-20 rounded-full border border-white/40 group-hover:border-[#1D82A6] transition-colors duration-300 flex items-center justify-center bg-white/[0.03]">
                   {pillar.icon}
                 </div>
                 
-                <h3 className="text-[18px] font-semibold mb-2 tracking-tight">{pillar.title}</h3>
+                <h3 className="text-[18px] font-semibold mb-2 tracking-tight group-hover:text-[#1D82A6] transition-colors duration-300">
+                  {pillar.title}
+                </h3>
                 <p className="text-[14px] text-[#94A3B8] leading-relaxed font-normal">{pillar.desc}</p>
               </motion.div>
             ))}
           </motion.div>
           
-          <motion.div variants={itemVariants} className="mt-12 w-full border border-[#1D82A6] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-6">
+          <motion.div 
+            variants={itemVariants} 
+            className="mt-12 w-full border border-[#1D82A6]/40 hover:border-[#1D82A6] transition-colors duration-300 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center text-center md:text-left gap-6 bg-white/[0.02]"
+          >
             <div className="w-20 h-20 rounded-full border border-[#1E293B] flex items-center justify-center flex-shrink-0">
-              <BarChart3 className="w-8 h-8 text-white" />
+              <Layers className="w-8 h-8 text-[#1D82A6]" />
             </div>
             
             <div>
-              <h4 className="font-bold text-[18px] mb-1">Our standards. Your advantage.</h4>
-              <p className="text-[#94A3B8] text-[14px] font-normal">Better code. Better products. Better outcomes.</p>
+              <h4 className="font-bold text-[18px] mb-1">One partner. Everything covered.</h4>
+              <p className="text-[#94A3B8] text-[14px] font-normal">
+                Websites, branding, SEO, Google Business, and AI — all hosted and maintained by us so you never have to think about the technical side.
+              </p>
             </div>
           </motion.div>
+
+          {/* Mobile only CTA — inside right column so it renders after callout */}
+          <div className="flex lg:hidden justify-center mt-10">
+            <button className="flex items-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group">
+              <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-all duration-300" />
+            </button>
+          </div>
         </div>
       </div>
     </motion.section>
