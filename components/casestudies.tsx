@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { ChevronRight, Play } from 'lucide-react';
+import { ChevronRight, Play, ArrowUpRight, ShieldCheck, Users, Lock } from 'lucide-react';
 
 const stories = [
   {
@@ -63,7 +63,6 @@ export default function CaseStudies() {
               key={story.id}
               className="relative rounded-3xl overflow-hidden block cursor-pointer group aspect-[2080/1170] shadow-lg"
               // @ts-ignore
-              
               onMouseEnter={() => { if (!isMobile) setHoveredId(story.id); }}
               onMouseLeave={() => { if (!isMobile) setHoveredId(null); }}
             >
@@ -73,7 +72,6 @@ export default function CaseStudies() {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               />
               
-              {/* Play Button - Always visible on mobile, appears on hover for desktop */}
               <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
                 <div className={`w-20 h-20 bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 
                   ${isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-hover:scale-110'}`}>
@@ -81,7 +79,6 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              {/* Text Overlay - Only renders on desktop to keep mobile clean */}
               {!isMobile && (
                 <motion.div 
                   className="absolute inset-0 bg-[#0A111A]/85 p-8 flex flex-col justify-between z-10"
@@ -90,21 +87,15 @@ export default function CaseStudies() {
                   transition={{ duration: 0.4 }}
                 >
                   <div>
-                    <span className="text-[10px] font-bold text-[#1D82A6] tracking-widest uppercase">
-                      {story.category}
-                    </span>
-                    <p className="text-white mt-4 leading-relaxed font-medium italic text-lg line-clamp-4">
-                      "{story.quote}"
-                    </p>
+                    <span className="text-[10px] font-bold text-[#1D82A6] tracking-widest uppercase">{story.category}</span>
+                    <p className="text-white mt-4 leading-relaxed font-medium italic text-lg line-clamp-4">"{story.quote}"</p>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
                     {story.metrics.map((m, i) => (
                       <div key={i}>
                         <div className="text-3xl font-bold text-white">{m.value}</div>
-                        <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-0.5">
-                          {m.label}
-                        </div>
+                        <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-0.5">{m.label}</div>
                       </div>
                     ))}
                   </div>
@@ -114,11 +105,38 @@ export default function CaseStudies() {
           ))}
         </div>
 
-        <div className="text-center">
+        {/* View More - Desktop Only */}
+        <div className="hidden md:block text-center mb-24">
           <a href="/case-studies" className="inline-flex items-center gap-2 text-[#1D82A6] font-bold text-lg hover:gap-4 transition-all">
             VIEW ALL CASE STUDIES <ChevronRight className="w-4 h-4" />
           </a>
         </div>
+
+        {/* CTA Banner - Mobile Only */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="md:hidden relative bg-[#0A111A] rounded-3xl p-8 flex flex-col items-center gap-8 text-white overflow-hidden mb-12"
+        >
+          <img src="/img/casestudies_metric.png" alt="CTA Texture" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
+
+          <div className="flex flex-col items-center text-center relative z-10">
+             <div className="w-20 h-20 flex items-center justify-center mb-4">
+                <img src="/img/motion_digital.png" alt="Logo" className="max-h-full w-auto object-contain" />
+             </div>
+             <h2 className="text-2xl font-bold mb-4">Your success is our standard.</h2>
+             <div className="flex flex-wrap justify-center gap-4 text-[10px] font-medium tracking-[0.1em] uppercase opacity-60">
+                <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5"/> Enterprise Grade</span>
+                <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5"/> Secure</span>
+             </div>
+          </div>
+
+          <a href="/case-studies" className="bg-transparent border border-white/20 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 w-full justify-center relative z-10">
+            VIEW ALL CASE STUDIES <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
