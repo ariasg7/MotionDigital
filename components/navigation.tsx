@@ -6,15 +6,23 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ["HERO", "STUDIO", "SERVICES", "CASE STUDIES", "PROCESS", "RESOURCES"];
+  const navLinks = ["STUDIO", "SERVICES", "CASE STUDIES", "PROCESS", "RESOURCES"];
 
   // Helper function to scroll to top without fragment in URL
 // Helper function to scroll to top without fragment in URL
-  const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setIsOpen(false);
-  };
+  // Helper function to scroll to top and clear URL hash
+const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.preventDefault();
+  
+  // 1. Scroll to the very top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // 2. This resets the URL to the base path (removes #fragment)
+  window.history.replaceState(null, '', window.location.pathname);
+  
+  // 3. Close menu if mobile
+  setIsOpen(false);
+};
 
   return (
     <motion.nav 

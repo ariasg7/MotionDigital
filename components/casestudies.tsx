@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { ChevronRight, Play, ArrowUpRight, ShieldCheck, Users, Lock } from 'lucide-react';
+import { ChevronRight, Play, ArrowUpRight, ShieldCheck, Lock } from 'lucide-react';
 
 const stories = [
   {
@@ -31,8 +31,9 @@ const stories = [
   }
 ];
 
-export default function CaseStudies() {
-  const [hoveredId, setHoveredId] = useState(null);
+// Added { id } prop to accept the id from page.tsx
+export default function CaseStudies({ id }: { id?: string }) {
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -43,9 +44,10 @@ export default function CaseStudies() {
   }, []);
 
   return (
-    <section className="relative py-24 px-6 lg:px-12 bg-[#FAF9F5] overflow-hidden">
+    // Applied the id prop to the section
+    <section id={id} className="relative py-24 px-6 lg:px-12 bg-[#FAF9F5] overflow-hidden">
       <img 
-        src="/img/motion_digital_hero_img.png" 
+        src="/img/casestudies_img.png" 
         alt="Abstract wave background" 
         className="absolute top-[-25%] left-0 w-full h-[120%] object-cover object-top pointer-events-none opacity-75 z-0" 
       />
@@ -62,7 +64,6 @@ export default function CaseStudies() {
               href={story.link}
               key={story.id}
               className="relative rounded-3xl overflow-hidden block cursor-pointer group aspect-[2080/1170] shadow-lg"
-              // @ts-ignore
               onMouseEnter={() => { if (!isMobile) setHoveredId(story.id); }}
               onMouseLeave={() => { if (!isMobile) setHoveredId(null); }}
             >
@@ -105,14 +106,12 @@ export default function CaseStudies() {
           ))}
         </div>
 
-        {/* View More - Desktop Only */}
         <div className="hidden md:block text-center mb-24">
           <a href="/case-studies" className="inline-flex items-center gap-2 text-[#1D82A6] font-bold text-lg hover:gap-4 transition-all">
             VIEW ALL CASE STUDIES <ChevronRight className="w-4 h-4" />
           </a>
         </div>
 
-        {/* CTA Banner - Mobile Only */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}

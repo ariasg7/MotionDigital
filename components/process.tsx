@@ -53,14 +53,17 @@ const stages = [
 
 const wavePath = "M 80 25 C 150 10, 200 55, 280 42 S 380 10, 500 18 S 620 45, 700 35 S 820 12, 880 22";
 
-export function ProcessSection() {
+export function ProcessSection({ id }: { id?: string }) {
   return (
     <motion.section
+      id={id}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true, amount: 0.1 }}
-      className="relative w-full py-16 lg:py-20 bg-[#0A111A] overflow-hidden font-sans"
+      // ADD THIS CLASS: scroll-mt-[100px]
+      // Adjust the value 100px to match the actual height of your fixed navbar
+      className="relative w-full py-16 lg:py-20 bg-[#0A111A] overflow-hidden font-sans scroll-mt-[100px]"
     >
 
       {/* Topographic background */}

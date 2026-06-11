@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Layers, MousePointerClick, Search, Zap, Cpu, ArrowUpRight, CheckCircle, Rocket, Users, TrendingUp, MapPin } from "lucide-react";
 
-export function WaveServicesSection() {
+export function WaveServicesSection({ id }: { id?: string }) {
   const services = [
     { id: "01", title: "Strategy", desc: "We map out exactly what your business needs to get found, look credible, and win more customers online.", icon: Layers },
     { id: "02", title: "Websites", desc: "Built to turn visitors into calls and enquiries — fast, professional, and built to convert.", icon: MousePointerClick },
@@ -15,21 +15,22 @@ export function WaveServicesSection() {
   ];
 
   const positions = [
-    "top-[-165%] left-[50%]",
-    "top-[-60%] left-[30%]",
-    "top-[-40%] left-[70%]",
-    "top-[45%] left-[30%]",
-    "top-[55%] left-[65%]",
-    "top-[10%] left-[0%]",
+    "top-[-280%] left-[50%]",
+    "top-[-130%] left-[30%]",
+    "top-[-170%] left-[80%]",
+    "top-[05%] left-[40%]",
+    "top-[15%] left-[75%]",
+    "top-[-10%] left-[5%]",
   ];
 
   return (
     <motion.section
+      id={id}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true, amount: 0.2 }}
-      className="relative w-full min-h-screen bg-[#FAF9F5] flex flex-col justify-between py-12 overflow-hidden"
+      className="relative w-full min-h-[92vh] bg-[#FAF9F5] flex flex-col justify-center pt-24 pb-12 overflow-visible scroll-mt-20"
     >
       {/* Responsive Backgrounds */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -103,29 +104,29 @@ export function WaveServicesSection() {
           })}
         </div>
 
-        {/* Footer */}
+        {/* Footer - Scaled down for better balance */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 bg-white/90 backdrop-blur-md border border-white/80 rounded-[30px] py-8 px-6 lg:px-10 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)]"
+          className="mt-12 bg-white/90 backdrop-blur-md border border-white/80 rounded-[24px] py-6 px-6 lg:px-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)]"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 lg:gap-0">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4">
             {[
               { icon: CheckCircle, title: "Done", desc: "For You" },
               { icon: Rocket, title: "No Tech", desc: "Headaches" },
               { icon: Users, title: "You Own", desc: "Everything" },
               { icon: TrendingUp, title: "Cancel", desc: "Anytime" }
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center justify-center lg:justify-start lg:px-6 relative">
+              <div key={idx} className="flex items-center justify-center lg:justify-start lg:px-4 relative">
                 {idx > 0 && (
-                  <div className="hidden lg:block absolute left-0 h-10 w-[1px] bg-[#1D82A6]/20"></div>
+                  <div className="hidden lg:block absolute left-0 h-8 w-[1px] bg-[#1D82A6]/15"></div>
                 )}
-                <div className="flex items-center gap-3">
-                  <item.icon className="w-8 h-8 lg:w-10 lg:h-10 text-[#1D82A6] shrink-0" strokeWidth={2} />
+                <div className="flex items-center gap-2.5">
+                  <item.icon className="w-7 h-7 lg:w-8 lg:h-8 text-[#1D82A6] shrink-0" strokeWidth={2} />
                   <div className="flex flex-col">
-                    <span className="font-extrabold text-[#0A111A] text-[13px] lg:text-[15px] leading-tight">{item.title}</span>
-                    <span className="font-bold text-[#0A111A]/80 text-[13px] lg:text-[15px] leading-tight">{item.desc}</span>
+                    <span className="font-extrabold text-[#0A111A] text-[12px] lg:text-[13px] leading-tight">{item.title}</span>
+                    <span className="font-bold text-[#0A111A]/80 text-[12px] lg:text-[13px] leading-tight">{item.desc}</span>
                   </div>
                 </div>
               </div>

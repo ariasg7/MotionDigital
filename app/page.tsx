@@ -21,9 +21,9 @@ export default function Home() {
         <TrustedSection />
         <Challenge />
         <Pillars />
-        <WaveServicesSection />
-        <ProcessSection />
-        <CaseStudies />
+        <WaveServicesSection id="services" />
+        <ProcessSection id="process" />
+        <CaseStudies id="case-studies" />
         <About />
         <FAQ />
         <FinalCTA />

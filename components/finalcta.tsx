@@ -8,10 +8,13 @@ export default function FinalCTA() {
   return (
     <section className="w-full min-h-[80vh] bg-[#0A111A] flex flex-col justify-center py-24 relative overflow-hidden">
       
-      {/* Interactive Background Layer */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[#1D82A6]/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#1D82A6]/5 blur-[100px] rounded-full" />
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0 bg-[#0A111A]"> 
+        <img 
+          src="/img/finalcta_img.png" 
+          alt="Background" 
+          className="w-full h-full object-cover opacity-40" // Adjust opacity here (0-100)
+        />
       </div>
       
       <div className="max-w-[800px] mx-auto px-6 text-center z-10 relative">
