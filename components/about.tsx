@@ -47,7 +47,7 @@ export default function About({ id }: { id?: string }) {
     <section id={id} ref={containerRef} className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden">
 
       {/* Subtle topographic texture */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.5]">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.4]">
         <img
           src="/img/about/about1_img.png"
           alt=""
