@@ -7,12 +7,12 @@ import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 
 export default function Footer() {
   const socialLinks = [
-    { name: "Instagram", icon: FaInstagram, url: "#" },
-    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" },
-    { name: "TikTok", icon: FaTiktok, url: "#" },
-    { name: "X (Twitter)", icon: FaTwitter, url: "#" },
-    { name: "Email", icon: AiOutlineMail, url: "mailto:hello@motiondigital.com" },
-    { name: "Phone", icon: AiOutlinePhone, url: "tel:+10000000000" }
+    { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/themotiondigital/?utm_source=ig_web_button_share_sheet" },
+    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" }, // Add your LinkedIn URL here
+    { name: "TikTok", icon: FaTiktok, url: "#" },      // Add your TikTok URL here
+    { name: "X (Twitter)", icon: FaTwitter, url: "#" }, // Add your X/Twitter URL here
+    { name: "Email", icon: AiOutlineMail, url: "mailto:giani@themotiondigital.com" },
+    { name: "Phone", icon: AiOutlinePhone, url: "tel:+19144812133" }
   ];
 
   return (
@@ -94,15 +94,17 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-wrap justify-center gap-4">
             {socialLinks.map((social) => (
-              <a 
-                key={social.name} 
-                href={social.url} 
-                className="w-10 h-10 rounded-full border border-[#1E293B] flex items-center justify-center hover:border-[#1D82A6] hover:bg-[#1D82A6]/10 transition-all duration-300"
-                aria-label={social.name}
-              >
-                <social.icon className={`w-5 h-5 ${social.name === "Phone" ? "rotate-90" : ""}`} />
-              </a>
-            ))}
+                <a 
+                  key={social.name} 
+                  href={social.url} 
+                  target="_blank"                // Opens in a new tab
+                  rel="noopener noreferrer"     // Security requirement
+                  className="w-10 h-10 rounded-full border border-[#1E293B] flex items-center justify-center hover:border-[#1D82A6] hover:bg-[#1D82A6]/10 transition-all duration-300"
+                  aria-label={social.name}
+                >
+                  <social.icon className={`w-5 h-5 ${social.name === "Phone" ? "rotate-90" : ""}`} />
+                </a>
+              ))}
           </div>
           <p className="text-[10px] text-[#475569] uppercase tracking-[0.1em] text-center">
             © {new Date().getFullYear()} Motion Digital. All rights reserved.
