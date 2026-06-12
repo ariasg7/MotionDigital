@@ -10,7 +10,7 @@ export function Hero({ id }: { id?: string }) {
     <motion.section 
       id={id}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }} // Changed from whileInView
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       className="relative w-full min-h-screen bg-[#FAF9F5] overflow-hidden pt-24 select-none font-sans"
     >
@@ -44,18 +44,18 @@ export function Hero({ id }: { id?: string }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-6 md:mb-8 text-[48px] sm:text-[56px] lg:text-[72px] xl:text-[80px] font-semibold tracking-[-0.03em] leading-[1.1] md:leading-[1.05] font-sans"
+              className="mb-8 text-[52px] sm:text-[64px] lg:text-[88px] xl:text-[96px] font-semibold tracking-[-0.03em] leading-[1.05] font-sans"
             >
               <span className="text-[#1A1A1A] block">Get Found.</span>
-              <span className="text-[#1D82A6] block mt-0.5 md:mt-1">Get Chosen.</span>
-              <span className="text-[#1A1A1A] block">Grow.</span>
+              <span className="text-[#1D82A6] block mt-2">Get Chosen.</span>
+              <span className="text-[#1A1A1A] block mt-2">Grow.</span>
             </motion.div>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-[15px] lg:text-[16px] leading-[1.75] font-light text-[#1A1A1A]/70 max-w-[480px] tracking-[0.01em] font-sans"
+              className="text-[16px] lg:text-[18px] leading-[1.75] font-light text-[#1A1A1A]/70 max-w-[520px] tracking-[0.01em] font-sans"
             >
               Websites, branding, SEO, and AI tools — so more customers find you, trust you, and call you.
             </motion.p>
@@ -64,18 +64,21 @@ export function Hero({ id }: { id?: string }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-10 md:mt-8 flex flex-row gap-4 items-center"
+              className="mt-10 md:mt-10 flex flex-row gap-6 items-center"
             >
-              {/* PRIMARY BUTTON */}
-              <a href = "/book"><button className="flex items-center gap-3 bg-[#0F141C] text-white pl-4 pr-3 py-3 rounded-[8px] hover:bg-[#1D82A6] transition-all group font-sans">
-                <span className="text-[11px] font-sans uppercase tracking-[0.04em]">BOOK A FREE CALL</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] group-hover:translate-x-0.5 group-hover:text-white" />
-              </button></a>
+              <a href="/book">
+                <button className="flex items-center gap-3 bg-[#0F141C] text-white px-6 py-4 rounded-[8px] hover:bg-[#1D82A6] transition-all group font-sans">
+                  {/* Non-bold button text */}
+                  <span className="text-[12px] font-medium uppercase tracking-[0.08em]">BOOK A FREE CALL</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#1D82A6] group-hover:translate-x-0.5 group-hover:text-white" />
+                </button>
+              </a>
 
-              {/* SECONDARY BUTTON */}
-              <a href="case-studies"><button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
-                SEE OUR WORK
-              </button></a>
+              <a href="#case-studies">
+                <button className="text-[#1A1A1A] text-[12px] font-medium uppercase tracking-[0.08em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
+                  SEE OUR WORK
+                </button>
+              </a>
             </motion.div>
           </div>
 
@@ -88,14 +91,14 @@ export function Hero({ id }: { id?: string }) {
           >
             <div className="absolute top-32 right-0 flex items-stretch gap-6">
               <div className="w-[2px] bg-black/[0.15]" />
-              <div className="flex flex-col gap-2.5 justify-center">
+              <div className="flex flex-col gap-3 justify-center">
                 {services.map((service, index) => (
                   <motion.span 
                     key={service} 
                     initial={{ opacity: 0, x: 10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.7 + (index * 0.1), duration: 0.5 }}
-                    className="text-[12px] font-bold tracking-[0.15em] text-[#1A1A1A]/60 font-sans"
+                    className="text-[13px] font-bold tracking-[0.18em] text-[#1A1A1A]/60 font-sans"
                   >
                     {service}
                   </motion.span>
