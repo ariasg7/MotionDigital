@@ -24,7 +24,7 @@ export default function Home() {
         <WaveServicesSection id="services" />
         <ProcessSection id="process" />
         <CaseStudies id="case-studies" />
-        <About />
+        <About id="about"/>
         <FAQ />
         <FinalCTA />
         <Footer />

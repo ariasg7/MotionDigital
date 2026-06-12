@@ -31,7 +31,7 @@ function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
   return <span ref={ref}>{displayValue}{suffix}</span>;
 }
 
-export default function About() {
+export default function About({ id }: { id?: string }) {
   const containerRef = useRef(null);
   
   // Track scroll progress of the container
@@ -44,12 +44,12 @@ export default function About() {
   const grayscale = useTransform(scrollYProgress, [0, 1], [100, 0]);
 
   return (
-    <section ref={containerRef} className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden">
+    <section id={id} ref={containerRef} className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden">
 
       {/* Subtle topographic texture */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.5]">
         <img
-          src="/img/about/about_img.png"
+          src="/img/about/about1_img.png"
           alt=""
           className="w-full h-full object-cover"
         />
