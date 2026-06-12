@@ -73,7 +73,7 @@ export function Hero({ id }: { id?: string }) {
               </button></a>
 
               {/* SECONDARY BUTTON */}
-              <a href="#case-studies"><button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
+              <a href="case-studies"><button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
                 SEE OUR WORK
               </button></a>
             </motion.div>

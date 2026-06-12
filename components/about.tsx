@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect } from 'react';
-import { motion, useMotionValue, animate, useInView } from 'framer-motion';
-import { Target, Users, TrendingUp, Calendar, Code2, Globe, CheckCircle } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { motion, useMotionValue, animate, useInView, useScroll, useTransform } from 'framer-motion';
+import { Calendar, Code2, Globe, CheckCircle, ArrowUpRight, Quote, MapPin } from 'lucide-react';
 
 const stats = [
-  { label: "Years Experience", value: 10, icon: Calendar, suffix: "+" },
-  { label: "Projects Delivered", value: 25, icon: Code2, suffix: "+" },
+  { label: "Years Experience", value: 5, icon: Calendar, suffix: "+" },
+  { label: "Projects Delivered", value: 15, icon: Code2, suffix: "+" },
   { label: "Industries Served", value: 8, icon: Globe, suffix: "+" },
   { label: "Client Focused", value: 100, icon: CheckCircle, suffix: "%" },
 ];
@@ -19,8 +19,8 @@ function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
 
   useEffect(() => {
     if (isInView) {
-      const controls = animate(count, value, { 
-        duration: 2.5, 
+      const controls = animate(count, value, {
+        duration: 2.5,
         ease: "easeOut",
         onUpdate: (latest) => setDisplayValue(Math.round(latest))
       });
@@ -32,108 +32,119 @@ function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
 }
 
 export default function About() {
+  const containerRef = useRef(null);
+  
+  // Track scroll progress of the container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "start center"]
+  });
+
+  // Map scroll progress (0 to 1) to grayscale values (100% to 0%)
+  const grayscale = useTransform(scrollYProgress, [0, 1], [100, 0]);
+
   return (
-    <section className="w-full py-24 bg-[#0A111A] text-white">
-      <div className="max-w-[1700px] mx-auto px-6 lg:px-20">
-        
+    <section ref={containerRef} className="relative w-full py-24 bg-[#0A111A] text-white overflow-hidden">
+
+      {/* Subtle topographic texture */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.5]">
+        <img
+          src="/img/about/about_img.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-[1700px] mx-auto px-6 lg:px-20">
+
         {/* HEADER SECTION */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="grid lg:grid-cols-2 gap-16 mb-24"
+          className="grid lg:grid-cols-[1fr_1.1fr] gap-16 lg:gap-20 mb-24 items-start"
         >
-          
-          <div className="flex flex-col justify-center">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-[#1D82A6] uppercase mb-4">
-              ABOUT MOTION DIGITAL
-            </span>
-            <h2 className="text-[48px] font-bold leading-[1.1] mb-8 text-white">
-              Founder-led.<br />
-              <span className="text-[#1D82A6]">Focused on results.</span>
-            </h2>
-            <p className="text-[18px] text-slate-400 leading-relaxed mb-12 max-w-[500px]">
-              Motion Digital is a boutique engineering studio focused on building high-performance digital products and systems. We partner with ambitious companies to turn complex challenges into scalable, elegant solutions.
-            </p>
 
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col gap-3">
-                <Target className="w-6 h-6 text-[#1D82A6]" />
-                <h4 className="font-bold text-white">Senior-Level Execution</h4>
-                <p className="text-[14px] text-slate-400">Every project is led and built by senior engineers with real-world experience.</p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <Users className="w-6 h-6 text-[#1D82A6]" />
-                <h4 className="font-bold text-white">Direct Partnership</h4>
-                <p className="text-[14px] text-slate-400">Work directly with the founder—clear communication, fast decisions, zero layers.</p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <TrendingUp className="w-6 h-6 text-[#1D82A6]" />
-                <h4 className="font-bold text-white">Outcome Obsessed</h4>
-                <p className="text-[14px] text-slate-400">We focus on measurable impact, performance, and long-term business value.</p>
-              </div>
-            </div>
-          </div>
-
-          <motion.div 
+          {/* LEFT: Photo + floating elements */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full h-[500px]"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative order-1"
           >
-            <img 
-              src="/img/about_img.png" 
-              alt="Motion Digital Team" 
-              className="w-full h-full object-cover rounded-lg shadow-2xl opacity-90"
-            />
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-[#1E293B]">
+              <motion.img
+                src="/img/about/me.jpeg"
+                alt="Founder of Motion Digital"
+                className="w-full h-full object-cover object-[center_15%]"
+                // Apply dynamic grayscale filter based on scroll
+                style={{ filter: useTransform(grayscale, (v) => `grayscale(${v}%)`) }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A111A] via-transparent to-transparent opacity-90" />
+
+              {/* Name overlay on photo */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
+                <div className="border-l-2 border-l-[#1D82A6] pl-4">
+                  <h3 className="text-[20px] font-bold text-white tracking-tight">Giani A.</h3>
+                  <p className="text-[12px] text-[#A1B0C4] uppercase tracking-[0.1em] mt-0.5">Founder, Motion Digital</p>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-[#A1B0C4] uppercase tracking-[0.1em]">
+                  <MapPin className="w-3 h-3 text-[#1D82A6]" />
+                  Based locally
+                </div>
+              </div>
+            </div>
+
+            {/* Floating quote card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="absolute -bottom-8 -right-4 lg:-right-8 bg-[#1D82A6] rounded-2xl p-5 max-w-[240px] shadow-2xl"
+            >
+              <Quote className="w-5 h-5 text-white/40 mb-2" strokeWidth={1.5} />
+              <p className="text-[14px] text-white leading-relaxed font-medium">
+                Real talk, fast answers, no middlemen.
+              </p>
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* BOTTOM METRIC BAR */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative bg-white text-[#0A111A] rounded-2xl p-12 overflow-hidden w-full isolate"
-        >
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="/img/about_metric.png" 
-              alt="Background" 
-              className="w-full h-full object-cover object-[center_-50px] lg:object-top opacity-1000 pointer-events-none" 
-            />
-          </div>
+          {/* RIGHT: Text content */}
+          <div className="flex flex-col justify-center order-2 pt-8 lg:pt-12">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-[#1D82A6] uppercase mb-4">
+              MEET THE FOUNDER
+            </span>
+            <h2 className="text-[44px] lg:text-[56px] font-bold leading-[1.1] mb-8 text-white tracking-tight">
+              Hi, I'm Giani A.<br />
+              <span className="text-[#1D82A6]">I run Motion Digital.</span>
+            </h2>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 w-full">
-            <div className="flex flex-col items-center lg:pr-12 lg:border-r border-[#E5E5E5] shrink-0">
-              <div className="w-24 h-24 flex items-center justify-center mb-2">
-                <img src="/img/motion_digital.png" alt="Motion Digital Logo" className="max-h-full w-auto object-contain" />
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <span className="font-sans font-semibold text-xl uppercase tracking-[0.2em] leading-none">MOTION</span>
-                <span className="font-sans text-sm uppercase tracking-[0.2em] mt-2 leading-none opacity-80">Digital</span>
-              </div>
+            <p className="text-[17px] text-slate-400 leading-relaxed mb-6 max-w-[540px]">
+              I started Motion Digital because I kept seeing the same thing — great local businesses, doing great work, completely invisible online. Meanwhile their competitors with weaker service were getting all the calls just because they showed up first on Google.
+            </p>
+            <p className="text-[17px] text-slate-400 leading-relaxed mb-10 max-w-[540px]">
+              So I started helping business owners fix that: websites, branding, SEO, Google Business, and AI tools that actually bring in customers. No account managers, no jargon, no contracts. Just me and my team, working directly with you.
+            </p>
+
+            {/* Inline mini stats */}
+            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-[#1E293B]">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="text-[28px] font-bold text-white tracking-tight tabular-nums">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </span>
+                  <span className="text-[11px] text-[#64748B] uppercase tracking-[0.12em] mt-1">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            <div className="flex-1 w-full grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={i} className="flex flex-col items-center justify-center text-center">
-                    <Icon className="w-12 h-12 text-[#1D82A6] mb-4" strokeWidth={1.5} />
-                    <span className="text-4xl font-sans font-semibold mb-2 text-[#0A111A] tabular-nums">
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    </span>
-                    <span className="text-[11px] text-[#64748B] uppercase tracking-[0.15em]">
-                      {stat.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <button className="self-start flex items-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group">
+              <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call With Me</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-all duration-300" />
+            </button>
           </div>
         </motion.div>
       </div>

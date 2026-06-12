@@ -31,7 +31,6 @@ const stories = [
   }
 ];
 
-// Added { id } prop to accept the id from page.tsx
 export default function CaseStudies({ id }: { id?: string }) {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -44,7 +43,6 @@ export default function CaseStudies({ id }: { id?: string }) {
   }, []);
 
   return (
-    // Applied the id prop to the section
     <section id={id} className="relative py-24 px-6 lg:px-12 bg-[#FAF9F5] overflow-hidden">
       <img 
         src="/img/casestudies_img.png" 
@@ -53,16 +51,28 @@ export default function CaseStudies({ id }: { id?: string }) {
       />
       
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="text-center mb-20">
+        {/* ANIMATED HEADER */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
           <span className="text-[11px] font-bold tracking-[0.25em] text-[#1D82A6] uppercase mb-4 block">Client Success Stories</span>
           <h2 className="text-[40px] md:text-[64px] font-bold text-[#0A111A] tracking-tighter leading-tight">Real results.<br />Measurable impact.</h2>
-        </div>
+        </motion.div>
 
+        {/* ANIMATED GRID */}
         <div className="grid md:grid-cols-2 gap-10 mb-16">
-          {stories.map((story) => (
+          {stories.map((story, index) => (
             <motion.a 
               href={story.link}
               key={story.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
               className="relative rounded-3xl overflow-hidden block cursor-pointer group aspect-[2080/1170] shadow-lg"
               onMouseEnter={() => { if (!isMobile) setHoveredId(story.id); }}
               onMouseLeave={() => { if (!isMobile) setHoveredId(null); }}
@@ -112,6 +122,7 @@ export default function CaseStudies({ id }: { id?: string }) {
           </a>
         </div>
 
+        {/* MOBILE CTA */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -123,12 +134,12 @@ export default function CaseStudies({ id }: { id?: string }) {
 
           <div className="flex flex-col items-center text-center relative z-10">
              <div className="w-20 h-20 flex items-center justify-center mb-4">
-                <img src="/img/motion_digital.png" alt="Logo" className="max-h-full w-auto object-contain" />
+               <img src="/img/motion_digital.png" alt="Logo" className="max-h-full w-auto object-contain" />
              </div>
              <h2 className="text-2xl font-bold mb-4">Your success is our standard.</h2>
              <div className="flex flex-wrap justify-center gap-4 text-[10px] font-medium tracking-[0.1em] uppercase opacity-60">
-                <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5"/> Enterprise Grade</span>
-                <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5"/> Secure</span>
+               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5"/> Enterprise Grade</span>
+               <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5"/> Secure</span>
              </div>
           </div>
 

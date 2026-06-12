@@ -7,23 +7,23 @@ import { Plus, Minus, ArrowUpRight } from 'lucide-react';
 const faqData = [
   {
     question: "How long does a typical project take?",
-    answer: "Project timelines vary based on scope and complexity. We provide detailed roadmaps after our initial discovery phase to ensure clear milestones and transparent delivery."
+    answer: "Timelines vary based on project scope and complexity. During our initial discovery phase, we will provide a tailored roadmap with clear milestones to ensure we meet your specific deadlines and goals."
   },
   {
     question: "What engagement models do you offer?",
-    answer: "We offer flexible engagement models including fixed-price projects for well-defined scopes, dedicated teams for long-term growth, and staff augmentation to scale your existing capabilities."
+    answer: "We provide flexible engagement models designed to fit your needs, ranging from project-based solutions for specific deliverables to ongoing partnerships for long-term growth and maintenance."
   },
   {
     question: "How do you ensure project success?",
-    answer: "We ensure success through a combination of transparent communication, rigorous agile testing, and iterative delivery cycles that keep you involved at every stage of the development process."
+    answer: "We prioritize transparency and communication. Success is driven by our collaborative process, regular progress updates, data-backed strategies, and a focus on delivering measurable results that align with your business objectives."
   },
   {
     question: "What technologies do you work with?",
-    answer: "Our expertise spans modern, high-performance tech stacks. We focus on scalable solutions using React, Next.js, Node.js, TypeScript, and robust cloud-native architectures."
+    answer: "We utilize a modern, versatile tech stack selected to best solve your specific challenges. Our expertise includes industry-leading tools for web development, marketing automation, SEO, and AI integration to ensure high-performance results."
   },
   {
     question: "Is my idea secure with you?",
-    answer: "Security and confidentiality are our top priorities. We treat your intellectual property with the highest regard and are fully prepared to sign NDAs before any project discussions begin."
+    answer: "Absolutely. We treat your intellectual property with the highest level of confidentiality. We are happy to sign non-disclosure agreements (NDAs) and implement secure data handling protocols to protect your ideas and business assets throughout our partnership."
   }
 ];
 
