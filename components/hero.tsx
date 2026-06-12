@@ -67,15 +67,15 @@ export function Hero({ id }: { id?: string }) {
               className="mt-10 md:mt-8 flex flex-row gap-4 items-center"
             >
               {/* PRIMARY BUTTON */}
-              <button className="flex items-center gap-3 bg-[#0F141C] text-white pl-4 pr-3 py-3 rounded-[8px] hover:bg-[#1D82A6] transition-all group font-sans">
+              <a href = "/book"><button className="flex items-center gap-3 bg-[#0F141C] text-white pl-4 pr-3 py-3 rounded-[8px] hover:bg-[#1D82A6] transition-all group font-sans">
                 <span className="text-[11px] font-sans uppercase tracking-[0.04em]">BOOK A FREE CALL</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] group-hover:translate-x-0.5 group-hover:text-white" />
-              </button>
+              </button></a>
 
               {/* SECONDARY BUTTON */}
-              <button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
+              <a href="#case-studies"><button className="text-[#1A1A1A] text-[11px] font-sans uppercase tracking-[0.04em] pb-1 border-b border-[#1D82A6] hover:text-[#1D82A6] transition-colors whitespace-nowrap">
                 SEE OUR WORK
-              </button>
+              </button></a>
             </motion.div>
           </div>
 

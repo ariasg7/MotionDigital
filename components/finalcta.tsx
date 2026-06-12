@@ -59,7 +59,7 @@ export default function FinalCTA() {
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          href="#" 
+          href="/book" 
           className="group inline-flex items-center gap-3 bg-[#1D82A6] text-white px-10 py-5 rounded-full font-bold text-[16px] transition-all shadow-[0_20px_40px_-10px_rgba(29,130,166,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(29,130,166,0.5)]"
         >
           Book a discovery call

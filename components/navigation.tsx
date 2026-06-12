@@ -1,28 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ["STUDIO", "SERVICES", "CASE STUDIES", "PROCESS", "RESOURCES"];
-
-  // Helper function to scroll to top without fragment in URL
-// Helper function to scroll to top without fragment in URL
-  // Helper function to scroll to top and clear URL hash
-const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.preventDefault();
   
-  // 1. Scroll to the very top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  
-  // 2. This resets the URL to the base path (removes #fragment)
-  window.history.replaceState(null, '', window.location.pathname);
-  
-  // 3. Close menu if mobile
-  setIsOpen(false);
-};
+  const navLinks = [
+    { name: "STUDIO", href: "/#studio" },
+    { name: "SERVICES", href: "/#services" },
+    { name: "PROCESS", href: "/#process" },
+    { name: "CASE STUDIES", href: "/#case-studies" },
+    { name: "RESOURCES", href: "/#resources" },
+  ];
 
   return (
     <motion.nav 
@@ -34,43 +26,55 @@ const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 h-20 md:h-24 flex items-center justify-between">
         
         {/* Left - Brand Identity */}
-        <a href="/" onClick={scrollToTop} className="flex items-center gap-[0.1px] cursor-pointer group py-2 z-50">
-          <img 
-            src="/img/motion_digital.png"
-            alt="Motion Digital Logo" 
-            className="w-16 h-16 md:w-24 md:h-24 object-contain transition-transform duration-300 ease-out group-hover:scale-105"
-          />
-          <div className="flex flex-col justify-center -space-y-1">
-            <span className="text-[18px] md:text-[22px] font-extrabold tracking-[0.02em] text-[#1A1A1A] leading-none">MOTION</span>
-            <span className="text-[14px] md:text-[18px] font-normal tracking-[0.01em] text-[#1A1A1A]/80 leading-none pt-0.5">Digital</span>
-          </div>
-        </a>
+          <Link 
+            href="/" 
+            onClick={(e) => {
+              // If we are already on the home page, scroll up smoothly
+              if (window.location.pathname === '/') {
+                e.preventDefault(); // Stop the link from doing anything else
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+              // If we are NOT on home, just let the <Link> do its job naturally
+            }}
+            className="flex items-center gap-[0.1px] cursor-pointer group py-2 z-50"
+          >
+            <img 
+              src="/img/motion_digital.png"
+              alt="Motion Digital Logo" 
+              className="w-16 h-16 md:w-24 md:h-24 object-contain transition-transform duration-300 ease-out group-hover:scale-105"
+            />
+            <div className="flex flex-col justify-center -space-y-1">
+              <span className="text-[18px] md:text-[22px] font-extrabold tracking-[0.02em] text-[#1A1A1A] leading-none">MOTION</span>
+              <span className="text-[14px] md:text-[18px] font-normal tracking-[0.01em] text-[#1A1A1A]/80 leading-none pt-0.5">Digital</span>
+            </div>
+          </Link>
 
         {/* Center - Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-10 lg:gap-11">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href={link === "HERO" ? "/" : `#${link.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={link === "HERO" ? scrollToTop : undefined}
+            <Link
+              key={link.name}
+              href={link.href}
               className="relative py-1 text-[11px] font-semibold tracking-[0.07em] text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors duration-300 ease-out group"
             >
-              {link}
+              {link.name}
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#1D82A6] transition-all duration-300 ease-out group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Right - Desktop CTA Button */}
         <div className="hidden md:block">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-3 bg-[#0F141C] text-white px-5 py-2.5 rounded-[8px] hover:bg-[#1D82A6] transition-all duration-300 ease-out group cursor-pointer"
-          >
-            <span className="text-[11px] font-bold tracking-[0.06em] uppercase">BOOK A CALL</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2.5} />
-          </motion.button>
+          <Link href="/book">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center justify-center gap-3 bg-[#0F141C] text-white px-5 py-2.5 rounded-[8px] hover:bg-[#1D82A6] transition-all duration-300 ease-out group cursor-pointer"
+            >
+              <span className="text-[11px] font-bold tracking-[0.06em] uppercase">BOOK A CALL</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2.5} />
+            </motion.button>
+          </Link>
         </div>
 
         {/* Mobile Menu Trigger */}
@@ -96,25 +100,24 @@ const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
           >
             <div className="flex flex-col gap-6">
               {navLinks.map((link) => (
-                <motion.a
-                  key={link}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  href={link === "HERO" ? "/" : `#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                  onClick={link === "HERO" ? scrollToTop : () => setIsOpen(false)}
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
                   className="text-[16px] font-bold tracking-[0.06em] text-[#1A1A1A]/80 active:text-[#1D82A6] py-2 border-b border-[#1A1A1A]/5"
                 >
-                  {link}
-                </motion.a>
+                  {link.name}
+                </Link>
               ))}
             </div>
 
             <div className="mt-auto pb-12">
-              <button className="flex items-center justify-center gap-4 bg-[#0F141C] text-white w-full py-4 rounded-[8px]">
-                <span className="font-sans text-[11px] font-bold tracking-[0.06em] uppercase">BOOK A CALL</span>
-                <ArrowUpRight className="w-4 h-4 text-[#1D82A6]" />
-              </button>
+              <Link href="/book" onClick={() => setIsOpen(false)}>
+                <button className="flex items-center justify-center gap-4 bg-[#0F141C] text-white w-full py-4 rounded-[8px]">
+                  <span className="font-sans text-[11px] font-bold tracking-[0.06em] uppercase">BOOK A CALL</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#1D82A6]" />
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}

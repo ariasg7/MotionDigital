@@ -67,7 +67,7 @@ export default function Challenge() {
                 We fix all three.
               </span>
               <button className="flex items-center gap-3 bg-[#0F141C] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-[#1D82A6] transition-all duration-300 group">
-                <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span>
+                <a href = "/book"><span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span></a>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#1D82A6] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
               </button>
               <p className="text-[12px] text-[#64748B] tracking-wide">

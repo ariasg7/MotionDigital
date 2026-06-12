@@ -59,13 +59,13 @@ export default function FAQ() {
             Here are some of the most common questions we receive from new clients regarding our process, technology, and partnerships.
           </p>
           
-          <button className="font-sans bg-[#0A111A] text-white px-8 md:px-10 py-5 md:py-7 rounded-2xl w-fit flex items-center gap-4 hover:bg-[#1D82A6] transition-colors mx-auto lg:mx-0">
+          <a href = "/book"><button className="font-sans bg-[#0A111A] text-white px-8 md:px-10 py-5 md:py-7 rounded-2xl w-fit flex items-center gap-4 hover:bg-[#1D82A6] transition-colors mx-auto lg:mx-0">
             <div className="flex flex-col items-start">
               <span className="text-[10px] md:text-[11px] uppercase tracking-[0.1em] opacity-80">Still have questions?</span>
               <span className="font-bold text-md md:text-lg">Let's talk</span>
             </div>
             <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-          </button>
+          </button></a>
         </motion.div>
 
         {/* Right Side: Accordion */}

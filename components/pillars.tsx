@@ -87,10 +87,10 @@ export default function Pillars() {
           </div>
 
           {/* Desktop only CTA */}
-          <button className="hidden lg:flex mt-6 items-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group">
+          <a href = "/book"><button className="hidden lg:flex mt-6 items-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3.5 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group">
             <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-all duration-300" />
-          </button>
+          </button></a>
         </motion.div>
 
         {/* RIGHT: Pillars Grid & Callout */}
