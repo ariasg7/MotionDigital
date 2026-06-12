@@ -1,19 +1,30 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 
 export default function Footer() {
   const socialLinks = [
-    { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/themotiondigital/?utm_source=ig_web_button_share_sheet" },
-    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" }, // Add your LinkedIn URL here
-    { name: "TikTok", icon: FaTiktok, url: "#" },      // Add your TikTok URL here
-    { name: "X (Twitter)", icon: FaTwitter, url: "#" }, // Add your X/Twitter URL here
+    { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/themotiondigital/" },
+    { name: "LinkedIn", icon: FaLinkedinIn, url: "#" },
+    { name: "TikTok", icon: FaTiktok, url: "#" },
+    { name: "X (Twitter)", icon: FaTwitter, url: "#" },
     { name: "Email", icon: AiOutlineMail, url: "mailto:giani@themotiondigital.com" },
     { name: "Phone", icon: AiOutlinePhone, url: "tel:+19144812133" }
   ];
+
+  const handleScroll = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
 
   return (
     <motion.footer 
@@ -23,82 +34,91 @@ export default function Footer() {
       viewport={{ once: true, amount: 0.2 }}
       className="relative w-full bg-[#0A111A] text-white pt-16 pb-8 border-t border-[#1E293B] overflow-hidden font-sans"
     >
-      
-      {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <img 
-          src="/img/pillars_img.png" 
-          alt="Footer Background" 
-          className="w-full h-full object-cover object-bottom" 
-        />
+        <img src="/img/pillars_img.png" alt="Footer Background" className="w-full h-full object-cover object-bottom" />
       </div>
 
       <div className="relative z-10 max-w-[1700px] mx-auto px-6 lg:px-20">
-        
-        {/* TOP SECTION */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 mb-12"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 mb-12">
           
           {/* Logo & Branding Column */}
-          <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-              <img 
-                src="/img/motion_digital.png" 
-                alt="Motion Digital Logo" 
-                className="max-h-full w-auto object-contain"
-              />
-            </div>
-            <div className="flex flex-col items-center md:items-start mb-6">
-              <span className="font-semibold text-lg md:text-xl uppercase tracking-[0.2em] leading-none drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                MOTION
-              </span>
-              <span className="text-xs md:text-sm uppercase tracking-[0.2em] mt-2 leading-none opacity-80">
-                Digital
-              </span>
+          <div className="col-span-2 md:col-span-1 flex flex-col items-center text-center">
+            <Link 
+              href="/"
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-2 cursor-pointer transition-transform duration-300 hover:scale-105"
+            >
+              <img src="/img/motion_digital.png" alt="Motion Digital Logo" className="max-h-full w-auto object-contain" />
+            </Link>
+            
+            <div className="flex flex-col items-center mb-6">
+              <span className="font-semibold text-lg md:text-xl uppercase tracking-[0.2em]">MOTION</span>
+              <span className="text-xs md:text-sm uppercase tracking-[0.2em] mt-2 opacity-80">Digital</span>
             </div>
           </div>
 
-          {/* Navigation Columns */}
-          {[
-            { title: "Company", links: ["About", "Services", "Case Studies"] },
-            { title: "Support", links: ["Pre-sale FAQs", "Submit a Ticket", "Widgetkit"] },
-            { title: "Resources", links: ["Themes", "Theme Tweak", "Affiliates"] },
-            { title: "Connect", links: ["LinkedIn", "GitHub", "Contact Us"] }
-          ].map((col, i) => (
-            <div key={i} className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h4 className="text-[15px] font-bold uppercase tracking-[0.2em] text-white mb-6">
-                {col.title}
-              </h4>
-              <ul className="flex flex-col gap-4 text-[13px] text-[#94A3B8]">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="hover:text-[#1D82A6] transition-colors duration-200">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </motion.div>
+          {/* Company Column */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="text-[15px] font-bold uppercase tracking-[0.2em] text-white mb-6">Company</h4>
+            <ul className="flex flex-col gap-4 text-[13px] text-[#94A3B8]">
+              {['about', 'services', 'case-studies'].map((item) => (
+                <li key={item}>
+                  <button onClick={(e) => handleScroll(e, item)} className="hover:text-[#1D82A6] capitalize transition-colors">
+                    {item.replace('-', ' ')}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Divider */}
+          {/* Agency Column */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="text-[15px] font-bold uppercase tracking-[0.2em] text-white mb-6">Agency</h4>
+            <ul className="flex flex-col gap-4 text-[13px] text-[#94A3B8]">
+              <li>
+                <button onClick={(e) => handleScroll(e, 'process')} className="hover:text-[#1D82A6] transition-colors">
+                  Process
+                </button>
+              </li>
+              <li><a href="/resources" className="hover:text-[#1D82A6] transition-colors">Resources</a></li>
+              <li><a href="/book" className="hover:text-[#1D82A6] transition-colors">Book a Call</a></li>
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="text-[15px] font-bold uppercase tracking-[0.2em] text-white mb-6">Legal</h4>
+            <ul className="flex flex-col gap-4 text-[13px] text-[#94A3B8]">
+              <li><a href="/privacy" className="hover:text-[#1D82A6] transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-[#1D82A6] transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          {/* Connect Column */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="text-[15px] font-bold uppercase tracking-[0.2em] text-white mb-6">Connect</h4>
+            <ul className="flex flex-col gap-4 text-[13px] text-[#94A3B8]">
+              <li><a href="mailto:giani@themotiondigital.com" className="hover:text-[#1D82A6] transition-colors">Email Giani</a></li>
+              <li><a href="tel:+19144812133" className="hover:text-[#1D82A6] transition-colors">Call Us</a></li>
+            </ul>
+          </div>
+        </div>
+
         <div className="border-t border-[#1E293B] mb-8"></div>
 
-        {/* BOTTOM SECTION: Socials */}
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-wrap justify-center gap-4">
             {socialLinks.map((social) => (
                 <a 
                   key={social.name} 
                   href={social.url} 
-                  target="_blank"                // Opens in a new tab
-                  rel="noopener noreferrer"     // Security requirement
+                  target="_blank" 
+                  rel="noopener noreferrer" 
                   className="w-10 h-10 rounded-full border border-[#1E293B] flex items-center justify-center hover:border-[#1D82A6] hover:bg-[#1D82A6]/10 transition-all duration-300"
                   aria-label={social.name}
                 >
