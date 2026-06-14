@@ -18,18 +18,21 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["500", "700", "800"],
 });
 
+// Set your production domain here
+const siteUrl = "https://www.themotiondigital.com";
+
 export const metadata: Metadata = {
   title: "Motion Digital",
   description: "Performance. Engineered.",
-  // Add this block for social media sharing
+  metadataBase: new URL(siteUrl), // Required for absolute URL resolution
   openGraph: {
     title: "Motion Digital",
     description: "High-performance digital systems that drive measurable growth.",
-    url: "https://yourdomain.com", // REPLACE with your actual live URL
+    url: siteUrl,
     siteName: "Motion Digital",
     images: [
       {
-        url: "https://raw.githubusercontent.com/ariasg7/MotionDigital/refs/heads/main/public/img/MotionDigitalOpenGraph.png", // Must be located in public/img/og-image.png
+        url: "/img/MotionDigitalOpenGraph.png", // Ensure file is at public/img/MotionDigitalOpenGraph.png
         width: 1200,
         height: 630,
         alt: "Motion Digital - Performance. Engineered.",
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Motion Digital",
     description: "Performance. Engineered.",
-    images: ["https://raw.githubusercontent.com/ariasg7/MotionDigital/refs/heads/main/public/img/MotionDigitalOpenGraph.png"],
+    images: ["/img/MotionDigitalOpenGraph.png"],
   },
 };
 
