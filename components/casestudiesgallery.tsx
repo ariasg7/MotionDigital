@@ -3,109 +3,68 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Phone } from "lucide-react";
+import Link from "next/link";
+import { caseStudies } from "@/data/caseStudies";
 
 const filters = ["All", "Web Design", "SEO", "Google Ads", "Branding", "AI Automation"];
 
-const caseStudies = [
-  {
-    id: 1,
-    category: ["Web Design", "SEO"],
-    categoryLabel: "WEB DESIGN / SEO",
-    clientName: "Dolce Far Niete",
-    image: "/img/testimonials/testimonial1.png",
-    title: "3X More Clients in The First Month",
-    metrics: [
-      { value: "+300%", label: "Leads" },
-      { value: "+150%", label: "Organic Traffic" },
-      { value: "x2", label: "Digital Footprint" },
-    ],
-    timeframe: "8 Months",
-  },
-  {
-    id: 2,
-    category: ["SEO", "Google Ads"],
-    categoryLabel: "SEO / GOOGLE ADS",
-    clientName: "Pochara Studio",
-    image: "/img/testimonials/testimonial2.png",
-    title: "2X More Client Acquisition",
-    metrics: [
-      { value: "+210%", label: "Leads" },
-      { value: "+165%", label: "Website Traffic" },
-      { value: "-42%", label: "CPA" },
-    ],
-    timeframe: "6 Months",
-  },
-  {
-    id: 3,
-    category: ["Web Design", "SEO", "Google Ads"],
-    categoryLabel: "WEB DESIGN / SEO / ADS",
-    clientName: "Urban Kitchen",
-    image: "/img/testimonials/testimonial3.png",
-    title: "120% More Sales in 90 Days",
-    metrics: [
-      { value: "+120%", label: "Sales" },
-      { value: "+85%", label: "Online Orders" },
-      { value: "+70%", label: "ROAs" },
-    ],
-    timeframe: "8 Months",
-  },
-];
-
 function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
   return (
-    <motion.div
-      whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(29,130,166,0.15)" }}
-      transition={{ duration: 0.25 }}
-      className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col lg:flex-row group cursor-pointer"
-    >
-      {/* LEFT: Thumbnail */}
-      <div className="flex-shrink-0 w-full lg:w-[55%] overflow-hidden">
-        <img
-          src={study.image}
-          alt={study.clientName}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          style={{ minHeight: '200px' }}
-        />
-      </div>
-
-      {/* RIGHT: Info */}
-      <div className="flex-1 flex flex-col justify-between px-6 py-6 lg:px-8 lg:py-7">
-        <div className="space-y-3 lg:space-y-4">
-          <p className="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] text-[#1D82A6] uppercase">
-            {study.categoryLabel}
-          </p>
-          <h3 className="text-[18px] lg:text-[22px] font-bold text-[#0F141C] tracking-tight leading-tight group-hover:text-[#1D82A6] transition-colors duration-300">
-            {study.title}
-          </h3>
-          <p className="text-[12px] lg:text-[13px] text-[#64748B]">{study.clientName}</p>
-
-          <div className="grid grid-cols-3 gap-3 lg:gap-4 pt-1">
-            {study.metrics.map((m, i) => (
-              <div key={i}>
-                <p className="text-[20px] lg:text-[24px] font-bold text-[#0F141C] tracking-tight leading-none">
-                  {m.value}
-                </p>
-                <p className="text-[9px] lg:text-[10px] text-[#64748B] uppercase tracking-[0.1em] mt-1">
-                  {m.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 text-[11px] lg:text-[12px] text-[#64748B]">
-            <span className="w-2 h-2 rounded-full bg-[#1D82A6] flex-shrink-0" />
-            <span>{study.timeframe} Timeframe</span>
-          </div>
+    <Link href={`/case-studies/${study.slug}`} className="block">
+      <motion.div
+        whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(29,130,166,0.15)" }}
+        transition={{ duration: 0.25 }}
+        className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col lg:flex-row group cursor-pointer"
+      >
+        {/* LEFT: Thumbnail */}
+        <div className="flex-shrink-0 w-full lg:w-[55%] overflow-hidden">
+          <img
+            src={study.image}
+            alt={study.clientName}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            style={{ minHeight: '200px' }}
+          />
         </div>
 
-        <div className="flex justify-end pt-4 lg:pt-5 border-t border-gray-100 mt-4 lg:mt-5">
-          <button className="flex items-center gap-2 text-[#1D82A6] font-semibold text-[12px] lg:text-[13px] group-hover:gap-3 transition-all duration-200">
-            View Case Study
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
-          </button>
+        {/* RIGHT: Info */}
+        <div className="flex-1 flex flex-col justify-between px-6 py-6 lg:px-8 lg:py-7">
+          <div className="space-y-3 lg:space-y-4">
+            <p className="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] text-[#1D82A6] uppercase">
+              {study.categoryLabel}
+            </p>
+            <h3 className="text-[18px] lg:text-[22px] font-bold text-[#0F141C] tracking-tight leading-tight group-hover:text-[#1D82A6] transition-colors duration-300">
+              {study.title}
+            </h3>
+            <p className="text-[12px] lg:text-[13px] text-[#64748B]">{study.clientName}</p>
+
+            <div className="grid grid-cols-3 gap-3 lg:gap-4 pt-1">
+              {study.metrics.map((m, i) => (
+                <div key={i}>
+                  <p className="text-[20px] lg:text-[24px] font-bold text-[#0F141C] tracking-tight leading-none">
+                    {m.value}
+                  </p>
+                  <p className="text-[9px] lg:text-[10px] text-[#64748B] uppercase tracking-[0.1em] mt-1">
+                    {m.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 text-[11px] lg:text-[12px] text-[#64748B]">
+              <span className="w-2 h-2 rounded-full bg-[#1D82A6] flex-shrink-0" />
+              <span>{study.timeframe} Timeframe</span>
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-4 lg:pt-5 border-t border-gray-100 mt-4 lg:mt-5">
+            <div className="flex items-center gap-2 text-[#1D82A6] font-semibold text-[12px] lg:text-[13px] group-hover:gap-3 transition-all duration-200">
+              View Case Study
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }
 
@@ -118,7 +77,6 @@ export function CaseStudiesGallery() {
 
   return (
     <section className="w-full font-sans">
-
       {/* HERO */}
       <div className="relative bg-[#0A111A] overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -147,7 +105,7 @@ export function CaseStudiesGallery() {
               We help businesses grow with proven strategies that deliver measurable outcomes. See the impact for yourself.
             </p>
 
-            {/* Filter tabs — scrollable on mobile */}
+            {/* Filter tabs */}
             <div className="flex flex-nowrap lg:flex-wrap gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
               {filters.map((f) => (
                 <button
@@ -202,14 +160,13 @@ export function CaseStudiesGallery() {
                 </p>
               </div>
             </div>
-            <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group whitespace-nowrap flex-shrink-0">
+            <a href ="../book"><button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#1D82A6] text-white pl-5 pr-4 py-3 rounded-[8px] hover:bg-white hover:text-[#0A111A] transition-all duration-300 group whitespace-nowrap flex-shrink-0">
               <span className="text-[11px] font-sans uppercase tracking-[0.08em]">Book a Free Call</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-all duration-300" />
-            </button>
+            </button></a>
           </div>
         </div>
       </div>
-
     </section>
   );
 }
