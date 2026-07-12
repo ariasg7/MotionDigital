@@ -8,6 +8,7 @@ export interface CaseStudy {
   title: string;
   metrics: { value: string; label: string }[];
   timeframe: string;
+  websiteUrl: string;
   metadata: {
     services: string;
     client: string;
@@ -38,6 +39,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "+85%", label: "Search Visibility" },
     ],
     timeframe: "3 Months",
+    websiteUrl: "https://www.dolcefarnienteesthetics.com",
     metadata: {
       services: "Web Design, SEO & Social Optimization",
       client: "Dolce Far Niente",
@@ -66,7 +68,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 2,
     slug: "pochara-studio",
-    category: ["SEO", "Google Business"],
+    category: ["Web Design", "SEO", "Google Business", "Branding"],
     categoryLabel: "SEO / GOOGLE BUSINESS",
     clientName: "Pochara Studio",
     image: "/img/testimonials/testimonial2.png",
@@ -77,6 +79,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "Local", label: "Map Optimization" },
     ],
     timeframe: "1 Month",
+    websiteUrl: "https://www.pocharastudio.com",
     metadata: {
       services: "Web Design, SEO & Google Business Setup",
       client: "Pochara Studio",
@@ -99,6 +102,45 @@ export const caseStudies: CaseStudy[] = [
       ],
       results: "Established a solid operational presence bringing in a steady flow of roughly triple the baseline client inquiries.",
       conclusion: "With the core web and map infrastructure live, the studio is primed for consistent, organic local visibility."
+    },
+  },
+  {
+    id: 3,
+    slug: "novora-mgt",
+    category: ["Web Design", "Branding", "SEO"],
+    categoryLabel: "WEB DESIGN / BRANDING",
+    clientName: "Novora Mgt. (Jay G.)",
+    image: "/img/testimonials/testimonial3.png",
+    title: "5X Business Scaling Through Digital Credibility",
+    metrics: [
+      { value: "5x", label: "Business Scale" },
+      { value: "100%", label: "Brand Authority" },
+      { value: "Custom", label: "Landing Experience" },
+    ],
+    timeframe: "6 Months",
+    websiteUrl: "https://www.novoramgt.com",
+    metadata: {
+      services: "Web Design & Brand Authority",
+      client: "Novora Mgt.",
+      year: 2026,
+      whatWeDidSummary: "Novora Mgt needed a powerful digital flagship built explicitly around his brand. We engineered a sleek, conversion-focused landing page tailored to seamlessly bridge his social media traffic and elevate his market credibility."
+    },
+    fullStory: {
+      objective: {
+        problem: "To bridge social media interest with elite digital credibility that drives active service expansion.",
+        context: "The client was pulling strong attention from his social networks but lacked a centralized digital hub to cement his authority and ramp up service offerings."
+      },
+      whatWeDid: [
+        "Brand-Centric Landing Page: Developed a high-impact web presence serving as an extension of his social media ecosystem.",
+        "Authority Design: Aligned the interface visuals with an elite, trustworthy corporate identity.",
+        "Conversion Flow: Streamlined visitor interaction to ramp up client onboarding."
+      ],
+      creativeProcess: [
+        "Social Integration: Designed the architecture specifically to convert high-intent social traffic.",
+        "Visual Branding: Tuned aesthetics to project maximum industry authority."
+      ],
+      results: "Massively ramped up his service capabilities, successfully fueling a 5x scale in overall business operations.",
+      conclusion: "By deploying a targeted brand landing page, we transformed his social presence into a verified engine for rapid business growth."
     },
   },
 ];
