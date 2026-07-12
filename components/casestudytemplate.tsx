@@ -3,20 +3,20 @@ import Image from "next/image";
 
 export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
   return (
-    <article className="w-full px-4 py-8 md:max-w-6xl md:mx-auto md:py-20">
+    <article className="w-full px-4 py-8 md:max-w-6xl md:mx-auto md:py-20 bg-white text-gray-900">
       {/* Mobile-first Header */}
       <header className="text-center mb-12 space-y-4">
-        <div className="inline-block px-3 py-1 rounded-full bg-[#D4A373]/10 border border-[#D4A373]/20 text-[#D4A373] text-[10px] font-bold tracking-widest uppercase">
+        <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 text-[10px] font-bold tracking-widest uppercase">
           {study.categoryLabel}
         </div>
-        <h1 className="text-3xl md:text-7xl font-bold text-gray-900 tracking-tight leading-tight">
+        <h1 className="text-3xl md:text-7xl font-bold tracking-tight leading-tight text-gray-900">
           {study.title}
         </h1>
         <p className="text-lg text-gray-500 italic">{study.clientName}</p>
       </header>
 
       {/* Hero Image - Maintains aspect ratio on mobile */}
-      <div className="relative w-full h-[250px] md:h-[500px] mb-12 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
+      <div className="relative w-full h-[250px] md:h-[500px] mb-12 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-gray-100">
         <Image src={study.image} alt={study.title} fill className="object-cover" priority />
       </div>
 
@@ -24,7 +24,7 @@ export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         {study.metrics.map((metric, i) => (
           <div key={i} className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="text-3xl md:text-4xl font-bold text-[#D4A373] mb-1">{metric.value}</div>
+            <div className="text-3xl md:text-4xl font-bold text-cyan-600 mb-1">{metric.value}</div>
             <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{metric.label}</div>
           </div>
         ))}
@@ -48,12 +48,12 @@ export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
 
         {/* Main Body */}
         <main className="md:col-span-8 space-y-12 md:space-y-20 order-last">
-          <section className="text-xl md:text-2xl leading-relaxed text-gray-700 font-light italic">
+          <section className="text-xl md:text-2xl leading-relaxed text-gray-700 font-light italic border-l-2 border-cyan-600 pl-6 py-2">
             "{study.metadata.whatWeDidSummary}"
           </section>
 
           <section>
-            <h2 className="text-[10px] font-bold uppercase tracking-widest text-[#D4A373] mb-4">The Challenge</h2>
+            <h2 className="text-[10px] font-bold uppercase tracking-widest text-cyan-600 mb-4">The Challenge</h2>
             <p className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">{study.fullStory.objective.problem}</p>
             <p className="text-md md:text-lg text-gray-600 leading-relaxed">{study.fullStory.objective.context}</p>
           </section>
@@ -63,8 +63,8 @@ export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
             <ProcessCard title="Execution" items={study.fullStory.whatWeDid} />
           </section>
 
-          <section className="bg-[#D4A373]/5 p-8 md:p-12 rounded-2xl md:rounded-3xl border border-[#D4A373]/10">
-            <h2 className="text-[#D4A373] font-bold uppercase tracking-widest text-[10px] mb-3">Conclusion</h2>
+          <section className="bg-cyan-500/5 p-8 md:p-12 rounded-2xl md:rounded-3xl border border-cyan-500/10">
+            <h2 className="text-cyan-600 font-bold uppercase tracking-widest text-[10px] mb-3">Conclusion</h2>
             <p className="text-xl md:text-2xl font-medium text-gray-900 leading-tight">{study.fullStory.conclusion}</p>
           </section>
         </main>
@@ -89,7 +89,7 @@ function ProcessCard({ title, items }: { title: string, items: string[] }) {
       <ul className="space-y-3">
         {items.map((item, i) => (
           <li key={i} className="text-gray-600 text-xs flex items-center">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A373] mr-3 shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mr-3 shrink-0" />
             {item}
           </li>
         ))}

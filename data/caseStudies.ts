@@ -31,75 +31,74 @@ export const caseStudies: CaseStudy[] = [
     categoryLabel: "WEB DESIGN / SEO",
     clientName: "Dolce Far Niente",
     image: "/img/testimonials/testimonial1.png",
-    title: "3X More Clients in The First Month",
+    title: "Tripled Client Base & Expanded Digital Presence",
     metrics: [
-      { value: "+300%", label: "Leads" },
-      { value: "+150%", label: "Organic Traffic" },
-      { value: "x2", label: "Digital Footprint" },
+      { value: "x3", label: "Client Bookings" },
+      { value: "x2", label: "Instagram Footprint" },
+      { value: "+85%", label: "Search Visibility" },
     ],
-    timeframe: "8 Months",
+    timeframe: "3 Months",
     metadata: {
-      services: "Web Design & SEO",
+      services: "Web Design, SEO & Social Optimization",
       client: "Dolce Far Niente",
-      year: 2025,
-      whatWeDidSummary: "Dolce Far Niente needed a complete digital overhaul. We implemented a high-conversion web design and a targeted SEO strategy, resulting in a 300% increase in lead generation within the first month."
+      year: 2026,
+      whatWeDidSummary: "Dolce Far Niente needed clearer online visibility for her core services and an easier way for clients to book. We deployed a clean web design, optimized her local SEO based on specific services, and polished her Google Business profile and Instagram footprint."
     },
     fullStory: {
       objective: {
-        problem: "To increase online visibility and drive a consistent pipeline of high-quality leads.",
-        context: "The client struggled with low traffic and an outdated web presence that failed to convert visitors."
+        problem: "To increase online outreach, showcase services clearly, and drive consistent direct bookings.",
+        context: "The client needed a streamlined way for online prospects to find her offerings and transition from casual social media scrollers to booked appointments."
       },
       whatWeDid: [
-        "Website Overhaul: Redesigned the site for high conversion rates.",
-        "SEO Strategy: Implemented targeted, localized keyword optimization.",
-        "Performance Tuning: Optimized site speed and user experience."
+        "Website Redesign: Built a clean presence focused on service clarity and an easy booking flow.",
+        "SEO Strategy: Implemented service-based localized keyword optimization.",
+        "Profile Optimization: Refined and tuned both her Google Business profile and Instagram presence."
       ],
       creativeProcess: [
-        "Market Research: Analyzed niche competitors to identify gaps.",
-        "Design System: Built a custom, brand-aligned UI.",
-        "SEO Implementation: Executed an on-page and off-page optimization plan."
+        "Service Mapping: Organized the core offerings so visitors immediately understand how to book.",
+        "Social Alignment: Coordinated her Instagram branding with the new web touchpoints.",
+        "Local Search Setup: Structured on-page and map-pack visibility around her primary service keywords."
       ],
-      results: "Achieved a 300% increase in leads and a 150% boost in organic traffic within the first month.",
-      conclusion: "By modernizing their digital infrastructure, we turned the client's website into a reliable engine for customer acquisition."
+      results: "Successfully tripled her incoming clientele and doubled her active Instagram reach and engagement footprint.",
+      conclusion: "By aligning her digital touchpoints and search presence, we established a steady, reliable channel for client bookings."
     },
   },
   {
     id: 2,
     slug: "pochara-studio",
-    category: ["SEO", "Google Ads"],
-    categoryLabel: "SEO / GOOGLE ADS",
+    category: ["SEO", "Google Business"],
+    categoryLabel: "SEO / GOOGLE BUSINESS",
     clientName: "Pochara Studio",
     image: "/img/testimonials/testimonial2.png",
-    title: "2X More Client Acquisition",
+    title: "Steady Growth & Local Search Foundation",
     metrics: [
-      { value: "+210%", label: "Leads" },
-      { value: "+165%", label: "Website Traffic" },
-      { value: "-42%", label: "CPA" },
+      { value: "3x", label: "Monthly Clients" },
+      { value: "100%", label: "Setup Complete" },
+      { value: "Local", label: "Map Optimization" },
     ],
-    timeframe: "6 Months",
+    timeframe: "1 Month",
     metadata: {
-      services: "SEO & Google Ads",
+      services: "Web Design, SEO & Google Business Setup",
       client: "Pochara Studio",
-      year: 2025,
-      whatWeDidSummary: "For Pochara Studio, we focused on aggressive Google Ads scaling and long-tail SEO keywords. This reduced their Customer Acquisition Cost by 42% while doubling their overall client intake."
+      year: 2026,
+      whatWeDidSummary: "For Pochara Studio, we established the initial digital foundation by deploying a clean website, executing core SEO, and setting up her Google Business profile to capture local search traffic."
     },
     fullStory: {
       objective: {
-        problem: "To lower acquisition costs while increasing the volume of incoming client appointments.",
-        context: "The client was spending too much per lead and needed a more efficient marketing mix."
+        problem: "To establish a functional digital storefront and capture local search intent.",
+        context: "The client needed a professional web presence and a verified local map footprint to support her baseline word-of-mouth clientele."
       },
       whatWeDid: [
-        "Ads Scaling: Optimized Google Ads campaigns for better ROAS.",
-        "Keyword Research: Identified high-intent, long-tail SEO terms.",
-        "Funnel Optimization: Streamlined the booking path for users."
+        "Website Launch: Developed a streamlined baseline site showcasing her core offerings.",
+        "Core SEO: Implemented foundational on-page search optimization.",
+        "Google Business Setup: Initialized and configured her local map listing."
       ],
       creativeProcess: [
-        "Data Analysis: Reviewed campaign performance to eliminate waste.",
-        "Strategy Adjustment: Pivoted toward high-performing long-tail keywords.",
-        "Testing: Conducted A/B testing on ad creative and copy."
+        "Platform Setup: Built out clean, readable service structures.",
+        "Local Optimization: Configured foundational directory and map parameters for early discovery."
       ],
-      results: "Reduced Customer Acquisition Cost (CPA) by 42% and doubled overall client intake.",
-      conclusion: "Through focused ad spend and high-intent SEO, we created a sustainable and cost-effective acquisition engine."
+      results: "Established a solid operational presence bringing in a steady flow of roughly triple the baseline client inquiries.",
+      conclusion: "With the core web and map infrastructure live, the studio is primed for consistent, organic local visibility."
     },
   },
 ];
